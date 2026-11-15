@@ -283,8 +283,8 @@ function detail(x){
   const mods=(en?x.modsEn:x.mods).map(m=>`<div><span class="l">${esc(LAB(m[0]))}</span><span class="t">${esc(m[1])}</span></div>`).join("")||`<div class="note">poedb 尚無詞綴資料</div>`;
   const where=d=>{const z=en?d.zoneEn:d.zone,b=en?d.bossEn:d.boss;
     return `<div><div class="k">${d.u?(en?"Map (unverified)":"地圖（未證實）"):d.act?"Act "+d.act:x.type==="boss"?"頭目戰":"地圖"}</div>
-    <div class="z">${esc(z||b)}${z?` <span class="detail-role-tag">· ${esc(b)}</span>`:""}</div>
-    ${en?"":`<div class="en">${esc(d.zoneEn||d.bossEn)}${d.zoneEn?" — "+esc(d.bossEn):""}</div>`}</div>`;};
+    <div class="z">${esc(z||b)}${z&&b?` <span class="detail-role-tag">· ${esc(b)}</span>`:""}</div>
+    ${en?"":`<div class="en">${esc(d.zoneEn||d.bossEn)}${d.zoneEn&&d.bossEn?" — "+esc(d.bossEn):""}</div>`}</div>`;};
   const loc=[...x.map,...x.camp,...x.unv].map(where).join("")+(GRIM[x.en]?`<div><div class="k">需要 Grim Fate</div><div class="z">${esc(GRIM[x.en])}</div></div>`:"");
   const rows=["Lesser","Normal","Greater"].filter(k=>x.tiers[k]).flatMap(k=>x.tiers[k].map(r=>[TL[k],...r]));
   const tiers=Object.keys(x.tiers).length;

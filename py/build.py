@@ -20,26 +20,36 @@ TI, TT = vtypes(base + '/dl/items.json'), vtypes(base + '/dl/twitems.json')
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import tradestats
 STATS = tradestats.load_index(base + '/dl/stats.json')
-# Look-alike map bosses (same model as the act boss) — not confirmed to drop the viscera.
+# Map-boss drops poedb lists as "?, ?" (unnamed). Every such viscera has Greater
+# listings, and Greater only drops from map bosses, so some map boss does drop it.
+# The boss is our best guess: same model as the act boss, on a current map, and not
+# already assigned to another viscera. None = no candidate found.
 # (bossEn, bossTw, mapEn, mapTw, tier)
 UNV = {
  "Lithic Haunches": [("Crusher of Gladiators", "粉碎衛士", "Racecourse", "古競速場", 10)],
  "Smouldering Leg": [("Renkarr, The Kiln Keeper", "烘爐看守．倫卡爾", "Silo", "儲物倉", 1)],
  "Necromancer's Mask": [("Xixic, High Necromancer", "首席操靈者希西克", "Bone Crypt", "骨跡陵墓", 9)],
  "Statue Leg": [("Suncaller Asha", "喚日者艾沙", "Park", "園林苑", 13)],
- "Defaced Bust": [("Suncaller Asha", "喚日者艾沙", "Park", "園林苑", 13)],
- "Captain's Leg": [("Blackguard Avenger", "烏旗守衛復仇者", "Promenade", "月色迴廊", 10)],
- "Blackguard's Leg": [("Legius Garhall", "雷吉斯葛賀爾", "Ancient City", "遠古危城", 9)],
- "Infested Torso": [("The Primal One", "史源者", "Thicket", "驚懼樹叢", 16),
-                    ("Blood Progenitor", "巨猿血祖", "Tropical Island", "晴空幽島", 12)],
+ "Defaced Bust": [("Carius, the Unnatural", "超然的卡洛斯", "City Square", "危城廣場", 7)],
+ "Captain's Leg": [("Legius Garhall", "雷吉斯葛賀爾", "Ancient City", "遠古危城", 9),
+                   ("Blackguard Tempest", "烏旗守衛之雷", "Promenade", "月色迴廊", 10)],
+ "Infested Torso": [("The Primal One", "史源者", "Thicket", "驚懼樹叢", 16)],
+ "Dessicated Head": [("The Blacksmith", "惡靈鐵匠", "Dunes", "暮色沙丘", 10)],
 }
+for _n in ("Hollowed Skull", "Vaal Appendage", "Brute's Arm", "Wraith Claws", "Champion's Banner",
+           "Flayed Arm", "Bloodied Arm", "Distended Stomach"):
+    UNV[_n] = [None]
 items = []
 for i, v in enumerate(d):
     drops = []
     for en, tw in zip(v['drops'], v['drops_tw'] or v['drops']):
         a, b = split_drop(en), split_drop(tw)
         drops.append(dict(act=a.get('act'), boss=b['boss'], bossEn=a['boss'], zone=b['zone'], zoneEn=a['zone']))
-    for be, bt, me, mt, t in UNV.get(v['name'], []):
+    for g in UNV.get(v['name'], []):
+        if g is None:
+            drops.append(dict(u=1, boss='', bossEn='', zone='某個地圖王（poedb 未標名）', zoneEn='A map boss (unnamed on poedb)'))
+            continue
+        be, bt, me, mt, t = g
         drops.append(dict(u=1, boss=bt, bossEn=be, zone=f'{mt} T{t}', zoneEn=f'{me} Map T{t}'))
     tiers = {}
     for p in v['prices']:
