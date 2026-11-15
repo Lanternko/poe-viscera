@@ -50,6 +50,27 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-ui);
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
 h1{margin:0;font-size:22px;font-weight:600;line-height:1.1}
+.site-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.header-actions{display:inline-flex;align-items:center;gap:8px;flex-shrink:0}
+
+/* copied: AramMeta header .icon-btn.lang-toggle + <details> .lang-menu dropdown */
+.site-header .lang-toggle{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;background:transparent;color:var(--text-muted);border:1px solid var(--border);border-radius:8px;font-size:12px;font-weight:600;white-space:nowrap;transition:color .12s,background-color .12s,border-color .12s}
+.site-header .lang-toggle:hover{color:var(--text);background:var(--surface-2);border-color:var(--border-strong)}
+.site-header .lang-toggle svg{width:16px;height:16px;flex-shrink:0}
+.site-header .lang-menu{position:relative;display:inline-flex}
+.site-header .lang-menu>summary{list-style:none;cursor:pointer;user-select:none}
+.site-header .lang-menu>summary::-webkit-details-marker{display:none}
+.site-header .lang-menu>summary::marker{content:''}
+.site-header .lang-menu[open]>summary{color:var(--text);background:var(--surface-2);border-color:var(--border-strong)}
+.site-header .lang-menu-list{position:absolute;top:calc(100% + 6px);right:0;z-index:80;min-width:160px;padding:4px;background:var(--surface-raised);border:1px solid var(--border-strong);border-radius:12px;box-shadow:0 12px 36px rgba(0,0,0,.55),0 0 0 1px rgba(0,0,0,.2);display:flex;flex-direction:column;gap:2px}
+.site-header .lang-menu-list [data-v]{appearance:none;border:0;background:transparent;color:var(--text-muted);text-align:left;font:inherit;font-size:13px;font-weight:600;padding:8px 10px;border-radius:6px;cursor:pointer;white-space:nowrap;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.site-header .lang-menu-list [data-v]:hover{color:var(--text);background:var(--surface-2)}
+.site-header .lang-menu-list [data-v].is-active{color:var(--text);background:var(--surface-2)}
+.site-header .lang-menu-list [data-v].is-active::after{content:'';width:10px;height:5px;margin-bottom:3px;border-left:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(-45deg);flex-shrink:0}
+/* NEW: group label inside the menu (AramMeta's menu has a single group) — label type from DESIGN.md (12px/600 muted) */
+.site-header .menu-label{padding:8px 10px 2px;font-size:12px;font-weight:600;color:var(--text-dim)}
+.site-header .menu-sep{height:1px;margin:4px 6px;background:var(--border)}
+@media (max-width:600px){#set-label{display:none}}
 .subtitle{margin-top:6px;color:var(--text-muted);font-size:13px;font-family:var(--font-caption)}
 
 .bar{position:sticky;top:0;z-index:30;background:var(--bg);display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;padding:12px 0;margin:12px 0 4px}
@@ -140,9 +161,25 @@ footer a{color:var(--text-muted)}
 </style>
 
 <div class="wrap">
-<header>
+<header class="site-header">
+  <div>
   <h1>Wickerman 臟器</h1>
   <div class="subtitle">3.30 Covens · 依 poe.ninja 最高價分級 · 更新於 <span id="snap"></span> · 1 div ≈ <span id="div"></span> c</div>
+  </div>
+  <div class="header-actions">
+  <details class="lang-menu" id="set">
+    <summary class="lang-toggle" aria-label="設定"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span id="set-label"></span></summary>
+    <div class="lang-menu-list" role="menu">
+      <div class="menu-label">伺服器</div>
+      <button type="button" role="menuitemradio" data-k="srv" data-v="intl">國際服</button>
+      <button type="button" role="menuitemradio" data-k="srv" data-v="tw">台服</button>
+      <div class="menu-sep"></div>
+      <div class="menu-label">物品語言</div>
+      <button type="button" role="menuitemradio" data-k="lang" data-v="zh">中文＋英文</button>
+      <button type="button" role="menuitemradio" data-k="lang" data-v="en">English</button>
+    </div>
+  </details>
+  </div>
 </header>
 
 <div class="bar">
@@ -179,21 +216,27 @@ const items=DATA.items.map(x=>{
   const max=Math.max(0,...all.map(r=>r[1]));
   const camp=x.drops.filter(d=>d.act), map=x.drops.filter(d=>!d.act);
   const type=x.group==="pin"?"boss":map.length?"map":"act";
-  let place;
-  if(type==="map")place=map[0].zone;
-  else if(type==="boss"){const d=map[0]||camp[0];place=d.zone||d.boss;}
-  else place=`Act ${camp[0].act} ${camp[0].zone}`;
+  let place,placeEn;
+  if(type==="map"){place=map[0].zone;placeEn=map[0].zoneEn;}
+  else if(type==="boss"){const d=map[0]||camp[0];place=d.zone||d.boss;placeEn=d.zoneEn||d.bossEn;}
+  else{place=`Act ${camp[0].act} ${camp[0].zone}`;placeEn=`Act ${camp[0].act} ${camp[0].zoneEn}`;}
   const act=x.act ?? camp[0]?.act ?? null;
   const tier=TIERS.find(t=>max>=t[1])[0];
   const hay=[x.en,x.tw,...x.drops.flatMap(d=>[d.boss,d.bossEn,d.zone,d.zoneEn]),...x.mods.map(m=>m[1]),...x.modsEn.map(m=>m[1])].join(" ").toLowerCase();
-  return {...x,max,camp,map,type,place,act,tier,hay};
+  return {...x,max,camp,map,type,place,placeEn,act,tier,hay};
 });
 document.getElementById("snap").textContent=new Date(DATA.snap).toLocaleString("zh-TW",{timeZone:"Asia/Taipei",month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit",hour12:false});
 document.getElementById("div").textContent=DIV;
 
-const st={type:"all",slot:"all",act:"all",q:""};
+const st={type:"all",slot:"all",act:"all",q:"",srv:"intl",lang:"zh"};
 try{Object.assign(st,JSON.parse(localStorage.getItem("vt")||"{}"),{q:""});}catch(e){}
-const save=()=>{try{localStorage.setItem("vt",JSON.stringify({type:st.type,slot:st.slot,act:st.act}))}catch(e){}};
+const save=()=>{try{localStorage.setItem("vt",JSON.stringify({type:st.type,slot:st.slot,act:st.act,srv:st.srv,lang:st.lang}))}catch(e){}};
+const EN=()=>st.lang==="en";
+const nm=x=>EN()?x.en:x.tw;
+const setMenu=document.getElementById("set");
+setMenu.querySelector(".lang-menu-list").onclick=e=>{const b=e.target.closest("[data-k]");if(!b)return;
+  st[b.dataset.k]=b.dataset.v;save();sync();render();setMenu.open=false;};
+document.addEventListener("click",e=>{if(setMenu.open&&!setMenu.contains(e.target))setMenu.open=false;});
 function chips(id,list,key){const el=document.getElementById(id);
   el.innerHTML=list.map(([v,t])=>`<button class="chip${v==="all"?" all":""}" type="button" data-v="${v}">${t}</button>`).join("");
   el.onclick=e=>{const b=e.target.closest(".chip");if(!b)return;st[key]=b.dataset.v;save();sync();render();};}
@@ -206,14 +249,16 @@ document.getElementById("q").oninput=e=>{st.q=e.target.value.trim().toLowerCase(
 function sync(){
   document.querySelectorAll("#fType .chip").forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===st.type));
   document.querySelectorAll("#fSlot .chip").forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===st.slot));
-  fAct.value=st.act;}
+  fAct.value=st.act;
+  setMenu.querySelectorAll("[data-k]").forEach(b=>{const on=st[b.dataset.k]===b.dataset.v;b.classList.toggle("is-active",on);b.setAttribute("aria-checked",on);});
+  document.getElementById("set-label").textContent=`${st.srv==="tw"?"台服":"國際服"} · ${EN()?"EN":"中/EN"}`;}
 const pass=x=>(st.type==="all"||x.type===st.type)&&(st.slot==="all"||x.slot===st.slot)&&(st.act==="all"||x.act===+st.act)&&(!st.q||st.q.split(/\s+/).every(w=>x.hay.includes(w)));
 
 function tile(x){
-  return `<button class="item" type="button" data-id="${x.id}" aria-expanded="false" aria-controls="det" title="${esc(x.en)}">
+  return `<button class="item" type="button" data-id="${x.id}" aria-expanded="false" aria-controls="det" title="${esc(EN()?x.tw:x.en)}">
   <span class="icon"><img src="${x.img}" alt=""></span>
-  <span class="n">${esc(x.tw)}</span><span class="p${x.max?"":" none"}">${price(x.max)}</span>
-  <span class="m">${TAG[x.type]} · ${esc(x.place)}</span></button>`;}
+  <span class="n">${esc(nm(x))}</span><span class="p${x.max?"":" none"}">${price(x.max)}</span>
+  <span class="m">${TAG[x.type]} · ${esc(EN()?x.placeEn:x.place)}</span></button>`;}
 let openId=null;
 function render(){
   const list=items.filter(pass);
@@ -224,13 +269,15 @@ function render(){
   document.getElementById("list").innerHTML=html||`<div class="empty">沒有符合的臟器</div>`;
   if(openId!=null){const t=document.querySelector(`.item[data-id="${openId}"]`);t?show(t,false):(openId=null);}}
 
-const LAB=l=>({Low:"Lesser",Med:"一般",High:"Greater",Queen:"巫后",Uber:"Uber","":"固定"}[l] ?? (/^\d$/.test(l)?"變體 "+l:l.replace("High","Greater")));
-const TL={Lesser:"Lesser",Normal:"一般",Greater:"Greater"};
+const LAB=l=>({Low:"Lesser",Med:EN()?"Normal":"一般",High:"Greater",Queen:EN()?"Queen":"巫后",Uber:"Uber","":EN()?"Fixed":"固定"}[l] ?? (/^\d$/.test(l)?(EN()?"Variant ":"變體 ")+l:l.replace("High","Greater")));
+const TL={Lesser:"Lesser",Normal:"Normal",Greater:"Greater"};
 function detail(x){
-  const mods=x.mods.map(m=>`<div><span class="l">${esc(LAB(m[0]))}</span><span class="t">${esc(m[1])}</span></div>`).join("")||`<div class="note">poedb 尚無詞綴資料</div>`;
-  const where=d=>`<div><div class="k">${d.act?"Act "+d.act:x.type==="boss"?"頭目戰":"地圖"}</div>
-    <div class="z">${esc(d.zone||d.boss)}${d.zone?` <span class="detail-role-tag">· ${esc(d.boss)}</span>`:""}</div>
-    <div class="en">${esc(d.zoneEn||d.bossEn)}${d.zoneEn?" — "+esc(d.bossEn):""}</div></div>`;
+  const en=EN();
+  const mods=(en?x.modsEn:x.mods).map(m=>`<div><span class="l">${esc(LAB(m[0]))}</span><span class="t">${esc(m[1])}</span></div>`).join("")||`<div class="note">poedb 尚無詞綴資料</div>`;
+  const where=d=>{const z=en?d.zoneEn:d.zone,b=en?d.bossEn:d.boss;
+    return `<div><div class="k">${d.act?"Act "+d.act:x.type==="boss"?"頭目戰":"地圖"}</div>
+    <div class="z">${esc(z||b)}${z?` <span class="detail-role-tag">· ${esc(b)}</span>`:""}</div>
+    ${en?"":`<div class="en">${esc(d.zoneEn||d.bossEn)}${d.zoneEn?" — "+esc(d.bossEn):""}</div>`}</div>`;};
   const loc=[...x.map,...x.camp].map(where).join("")+(GRIM[x.en]?`<div><div class="k">需要 Grim Fate</div><div class="z">${esc(GRIM[x.en])}</div></div>`:"");
   const rows=["Lesser","Normal","Greater"].filter(k=>x.tiers[k]).flatMap(k=>x.tiers[k].map(r=>[TL[k],...r]));
   const tiers=Object.keys(x.tiers).length;
@@ -241,20 +288,21 @@ function detail(x){
   const rolls=!x.mods.length&&sorted.length>3;
   const fx=rolls?`<div class="note" style="margin:0 0 6px">隨機一條詞綴，共 ${sorted.length} 種</div>${table}`:`<div class="mods">${mods}</div>`;
   const prices=rolls?`<div class="loc"><div><div class="k">價格區間</div><div class="z num">${price(Math.min(...sorted.map(r=>r[2]).filter(Boolean)))} – ${price(sorted[0][2])}</div></div></div>`:table;
+  const tw=st.srv==="tw", hasTrade=tw?x.tt:x.ti;
   const links=[
-    x.ti?`<a href="${trade("www.pathofexile.com","Covens",x.en)}" target="_blank" rel="noopener">國際服 Trade ${EXT}</a>`:"",
-    x.tt?`<a href="${trade("pathofexile.tw","巫影密會",x.tt)}" target="_blank" rel="noopener">台服 Trade ${EXT}</a>`:"",
+    !tw&&x.ti?`<a href="${trade("www.pathofexile.com","Covens",x.en)}" target="_blank" rel="noopener">Trade ${EXT}</a>`:"",
+    tw&&x.tt?`<a href="${trade("pathofexile.tw","巫影密會",x.tt)}" target="_blank" rel="noopener">台服 Trade ${EXT}</a>`:"",
     `<a href="https://poedb.tw/tw/${encodeURIComponent(x.slug)}" target="_blank" rel="noopener">poedb ${EXT}</a>`].join("");
   return `<div class="detail detail-inline">
   <button class="inline-detail-close" type="button" aria-label="收合"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
   <div class="detail-head"><span class="detail-avatar"><img src="${x.img}" alt=""></span>
-    <div class="inline-champ-id"><div class="inline-champ-title"><h3 class="cname">${esc(x.tw)}</h3><span class="detail-role-tag">${TAG[x.type]} · ${SLOT[x.slot]||"—"}</span></div>
-    <div class="inline-champ-stats"><b>${price(x.max).replace("<small>","<span class=unit>").replace("</small>","</span>")}</b> · ${esc(x.en)}</div></div>
+    <div class="inline-champ-id"><div class="inline-champ-title"><h3 class="cname">${esc(nm(x))}</h3><span class="detail-role-tag">${TAG[x.type]} · ${SLOT[x.slot]||"—"}</span></div>
+    <div class="inline-champ-stats"><b>${price(x.max).replace("<small>","<span class=unit>").replace("</small>","</span>")}</b>${en?"":` · ${esc(x.en)}`}</div></div>
     <div class="inline-detail-actions">${links}</div></div>
   <div class="detail-cols">
     <div class="detail-col fx"><h3>效果</h3>${fx}</div>
     <div class="detail-col"><h3>掉落位置</h3><div class="loc">${loc}</div></div>
-    <div class="detail-col"><h3>價格 <span class="section-meta">poe.ninja</span></h3>${prices}${x.ti&&tiers>1?`<div class="note">Trade 不分等級，看詞綴分辨。</div>`:""}</div>
+    <div class="detail-col"><h3>價格 <span class="section-meta">poe.ninja</span></h3>${prices}${hasTrade&&tiers>1?`<div class="note">Trade 不分等級，看詞綴分辨。</div>`:""}</div>
   </div></div>`;}
 
 const host=document.createElement("div");host.className="detail-host";host.id="det";host.setAttribute("role","region");
@@ -262,7 +310,7 @@ function show(t,scroll=true){
   const x=items.find(i=>i.id===+t.dataset.id);openId=x.id;
   document.querySelectorAll('.item[aria-expanded="true"]').forEach(b=>b.setAttribute("aria-expanded","false"));
   t.setAttribute("aria-expanded","true");
-  host.innerHTML=detail(x);host.setAttribute("aria-label",x.tw);
+  host.innerHTML=detail(x);host.setAttribute("aria-label",nm(x));
   host.remove();
   const top=t.offsetTop;let last=t;
   for(const s of t.parentNode.querySelectorAll(".item"))if(s.offsetTop===top)last=s;
