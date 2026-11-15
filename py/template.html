@@ -1,0 +1,273 @@
+<meta charset="utf-8">
+<title>Wickerman 臟器圖鑑</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Noto+Serif+TC:wght@400;600;700&display=swap">
+<style>
+/* Visual: Path of Exile atlas — carved stone ground, gold ornate frames, round map-node medallions,
+   lavender italic quest text, oxblood search bar. Single deliberate dark theme (the in-game UI has no light mode). */
+:root{
+  --stone:#0c0b0a; --panel:#15120f; --panel2:#0f0d0b; --edge:#3a3024;
+  --gold:#c8a465; --gold-hi:#f1d89c; --gold-lo:#6b5631;
+  --ink:#ddd3c2; --muted:#93877a; --lav:#b9abe8; --mod:#9a9aff; --blood:#2b0f0b;
+  --S:#e98a3e; --A:#f0de78; --B:#9696ff; --C:#cfcfcf; --D:#857a6c;
+  --boss:#e0634f; --map:#b9abe8; --act:#a99c88;
+  --f-title:"Cinzel","Noto Serif TC",serif;
+  --f-quest:"Cormorant Garamond","Noto Serif TC",serif;
+  --f-body:"Noto Serif TC","PMingLiU","Songti TC",serif;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){color-scheme:dark}}
+:root[data-theme="dark"]{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);font-family:var(--f-body);font-size:14px;line-height:1.5;
+  background-color:var(--stone);
+  background-image:
+    radial-gradient(ellipse at 50% -10%,rgba(120,95,60,.18),transparent 60%),
+    radial-gradient(ellipse at 50% 120%,rgba(0,0,0,.9),transparent 60%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .48 0 0 0 0 .4 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-attachment:fixed}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--stone)}
+a{color:var(--gold)}
+.wrap{max-width:1280px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 56px}
+.num{font-family:var(--f-title);font-variant-numeric:lining-nums tabular-nums}
+
+/* header */
+header{text-align:center;margin-bottom:18px}
+h1{font-family:var(--f-title);font-weight:900;font-size:clamp(26px,5vw,44px);letter-spacing:.04em;line-height:1.1;margin:0;
+  background:linear-gradient(180deg,var(--gold-hi),var(--gold) 55%,var(--gold-lo));-webkit-background-clip:text;background-clip:text;color:transparent}
+.orn{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--gold-lo);margin:6px auto 0;max-width:520px}
+.orn::before,.orn::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold-lo),transparent)}
+.sub{font-family:var(--f-quest);font-style:italic;font-variant:small-caps;color:var(--lav);font-size:17px;margin-top:6px}
+.sub b{color:var(--gold-hi);font-weight:600}
+
+/* filter bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;padding:10px 0;display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin-bottom:14px;
+  background:linear-gradient(180deg,rgba(12,11,10,.97),rgba(12,11,10,.92));border-bottom:1px solid var(--edge)}
+.grp{display:flex;gap:4px;flex-wrap:wrap}
+.chip{font-family:var(--f-body);font-size:13px;padding:4px 11px;cursor:pointer;color:var(--gold);border:1px solid var(--gold-lo);border-radius:3px;
+  background:linear-gradient(180deg,#2a2117,#140f0a);box-shadow:inset 0 1px 0 rgba(241,216,156,.12)}
+.chip:hover{color:var(--gold-hi);border-color:var(--gold)}
+.chip[aria-pressed="true"]{color:#1a120a;border-color:var(--gold-hi);background:linear-gradient(180deg,var(--gold-hi),var(--gold) 60%,#8e7340);font-weight:700}
+.search{flex:1 1 220px;min-width:0;display:flex;align-items:center;gap:8px;padding:5px 12px;border:1px solid var(--gold-lo);border-radius:3px;
+  background:linear-gradient(180deg,#3a1510,var(--blood));box-shadow:inset 0 0 10px rgba(0,0,0,.7),0 0 0 1px #000}
+.search span{font-family:var(--f-quest);font-style:italic;font-variant:small-caps;color:var(--gold);font-size:15px;white-space:nowrap}
+.search input{flex:1;min-width:0;border:0;background:none;color:var(--ink);font:inherit;font-size:14px;outline:none}
+.search input::placeholder{color:#8a6a58}
+.search:focus-within{border-color:var(--gold)}
+select{padding:5px 10px;border:1px solid var(--gold-lo);border-radius:3px;background:#140f0a;color:var(--gold);font:inherit;font-size:13px}
+.count{font-family:var(--f-title);font-size:12px;color:var(--muted);margin-left:auto;letter-spacing:.05em}
+:focus-visible{outline:2px solid var(--gold-hi);outline-offset:2px}
+
+/* tier rows */
+.tier{display:grid;grid-template-columns:86px 1fr;gap:14px;padding-block:14px;border-bottom:1px solid var(--edge);position:relative}
+.tier:last-child{border-bottom:0}
+.rail{display:flex;flex-direction:column;align-items:center;gap:6px}
+.medal{display:grid;place-items:center;border-radius:50%;flex:none;
+  background:radial-gradient(circle at 50% 35%,#2d261e,#0b0907 70%);
+  box-shadow:0 0 0 1px #000,0 0 0 3px var(--gold-lo),0 0 0 4px #000,0 0 0 5px rgba(200,164,101,.35),inset 0 0 12px #000}
+.rail .medal{width:62px;height:62px;font-family:var(--f-title);font-weight:900;font-size:32px;text-shadow:0 0 12px currentColor}
+.rail .r{font-family:var(--f-quest);font-style:italic;font-size:14px;color:var(--muted);text-align:center;line-height:1.2;white-space:pre-line}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;min-width:0}
+
+.tile{display:grid;grid-template-columns:50px 1fr auto;gap:1px 12px;align-items:center;text-align:left;font:inherit;color:inherit;cursor:pointer;min-width:0;
+  padding:9px 12px 9px 9px;border:1px solid var(--edge);border-radius:3px;background:linear-gradient(180deg,var(--panel),var(--panel2))}
+.tile:hover{border-color:var(--gold-lo);background:linear-gradient(180deg,#1d1914,#110f0c)}
+.tile[aria-expanded="true"]{border-color:var(--gold);box-shadow:0 0 0 1px rgba(241,216,156,.25),0 0 18px rgba(200,164,101,.18)}
+.tile .medal{grid-row:1/3;width:44px;height:44px;margin:3px}
+.tile .medal img{width:36px;height:36px;object-fit:contain}
+.tile .n{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;color:#efe6d6}
+.tile .p{font-family:var(--f-title);font-weight:700;font-size:17px;white-space:nowrap;text-align:right;color:var(--gold-hi)}
+.tile .p small{font-size:11px;color:var(--gold);margin-left:2px}
+.tile .p.none{color:var(--muted)}
+.tile .m{grid-column:2/4;display:flex;gap:7px;align-items:center;min-width:0;font-size:12.5px;color:var(--muted)}
+.tile .m .z{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;color:#cbbfae}
+.tag{flex:none;font-size:11px;font-weight:700;padding:0 6px;border:1px solid currentColor;border-radius:2px;line-height:17px;background:rgba(0,0,0,.35)}
+.tag.boss{color:var(--boss)} .tag.map{color:var(--map)} .tag.act{color:var(--act)}
+.empty{padding:40px;text-align:center;color:var(--muted);font-family:var(--f-quest);font-style:italic;font-size:18px}
+@media (max-width:560px){.tier{grid-template-columns:1fr;gap:10px}.rail{flex-direction:row;gap:12px}.rail .medal{width:44px;height:44px;font-size:22px}.rail .r{white-space:normal}.tiles{grid-template-columns:1fr}}
+
+/* inline detail */
+.det{grid-column:1/-1;position:relative;padding:18px 20px 16px;border:1px solid var(--gold-lo);border-radius:3px;
+  background:linear-gradient(180deg,#1b1611,#0d0b09);box-shadow:inset 0 0 0 1px #000,inset 0 0 40px rgba(0,0,0,.6),0 6px 24px rgba(0,0,0,.6);
+  display:grid;grid-template-columns:1.25fr 1fr 1.1fr;gap:18px 26px;animation:drop .16s ease-out}
+.det::before,.det::after{content:"◆";position:absolute;left:50%;transform:translateX(-50%);color:var(--gold);font-size:10px;line-height:1;background:var(--stone);padding:0 6px}
+.det::before{top:-6px} .det::after{bottom:-6px}
+@keyframes drop{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.det{animation:none}}
+.det .head{grid-column:1/-1;display:flex;gap:14px;align-items:center;padding-right:32px}
+.det .head .medal{width:64px;height:64px}
+.det .head .medal img{width:54px;height:54px;object-fit:contain}
+.det .head .n{font-size:20px;font-weight:700;color:#f3ead9;line-height:1.25}
+.det .head .e{font-family:var(--f-quest);font-style:italic;font-size:16px;color:var(--lav)}
+.det .x{position:absolute;top:8px;right:10px;border:0;background:none;color:var(--gold);font-size:22px;line-height:1;cursor:pointer;padding:6px}
+.det .x:hover{color:var(--gold-hi)}
+.h{font-family:var(--f-quest);font-style:italic;font-variant:small-caps;font-weight:600;color:var(--lav);font-size:18px;margin:0 0 8px;display:flex;align-items:center;gap:8px}
+.h::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--gold-lo),transparent)}
+.mods{display:grid;gap:7px}
+.mods div{display:grid;grid-template-columns:60px 1fr;gap:10px}
+.mods .l{font-size:11.5px;font-weight:700;color:var(--muted);padding-top:2px}
+.mods .l.hi{color:var(--A)} .mods .l.ub{color:var(--S)}
+.mods .t{white-space:pre-line;color:var(--mod)}
+.loc{display:grid;gap:10px}
+.loc .k{font-size:11.5px;font-weight:700;color:var(--muted)}
+.loc .z{font-size:16px;font-weight:700;color:#f3ead9;line-height:1.3}
+.loc .b{font-size:13px;color:#cbbfae}
+.loc .en{font-family:var(--f-quest);font-style:italic;font-size:15px;color:var(--muted)}
+.grim{border-left:2px solid var(--S);padding:4px 10px;font-size:13px;background:rgba(233,138,62,.07)}
+.grim b{color:var(--S)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+td{padding:5px 4px;border-bottom:1px solid #241e17;vertical-align:middle}
+td.l{color:var(--muted);font-size:12px;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+td.v{font-family:var(--f-title);font-weight:700;color:var(--gold-hi);text-align:right;white-space:nowrap}
+td.v small{font-size:10.5px;color:var(--gold)}
+td.c{color:var(--muted);font-size:11.5px;text-align:right;white-space:nowrap}
+td.a{text-align:right} td.a a{font-size:12px}
+.links{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.btn{display:inline-flex;align-items:center;gap:4px;padding:5px 11px;font-size:13px;text-decoration:none;color:var(--gold);border:1px solid var(--gold-lo);border-radius:3px;
+  background:linear-gradient(180deg,#2a2117,#140f0a);box-shadow:inset 0 1px 0 rgba(241,216,156,.12)}
+.btn:hover{color:var(--gold-hi);border-color:var(--gold)}
+.btn.main{color:#1a120a;border-color:var(--gold-hi);background:linear-gradient(180deg,var(--gold-hi),var(--gold) 60%,#8e7340);font-weight:700}
+.note{font-size:11.5px;color:var(--muted);margin-top:6px}
+details{font-size:12.5px;color:var(--muted);margin-top:6px} details summary{cursor:pointer;color:var(--gold)}
+@media (max-width:900px){.det{grid-template-columns:1fr 1fr}.det .fx{grid-column:1/-1}}
+@media (max-width:560px){.det{grid-template-columns:1fr;padding:16px 14px}.det .fx{grid-column:auto}}
+
+footer{margin-top:32px;font-size:12.5px;color:var(--muted);display:grid;gap:4px;text-align:center}
+footer a{color:var(--gold)}
+</style>
+
+<div class="wrap">
+<header>
+  <h1>Wickerman 臟器</h1>
+  <div class="orn">◆</div>
+  <div class="sub">Covens of Umbra · 依 poe.ninja 最高價分級 · 更新於 <b id="snap"></b> · 1 div ≈ <b id="div"></b> c</div>
+</header>
+
+<div class="bar">
+  <div class="grp" id="fType" role="group" aria-label="來源類型"></div>
+  <div class="grp" id="fSlot" role="group" aria-label="部位"></div>
+  <select id="fAct" aria-label="章節"></select>
+  <label class="search"><span>Highlight</span><input type="search" id="q" placeholder="名稱、地圖、Boss、詞綴" aria-label="搜尋"></label>
+  <span class="count" id="count"></span>
+</div>
+
+<main id="list"></main>
+
+<footer>
+  <div>用 Fate 強化區域 Boss 再擊殺才會掉。Greater 只從地圖版 Boss 掉；頭目類需要對應的 Grim Fate。</div>
+  <div>資料：<a href="https://poedb.tw/tw/Viscera" target="_blank" rel="noopener">poedb.tw</a> · <a href="https://poe.ninja/poe1/economy/covens/viscera" target="_blank" rel="noopener">poe.ninja</a> · <a href="https://maxroll.gg/poe/resources/wickerman-viscera-guide" target="_blank" rel="noopener">Maxroll</a>。開季初期掛單少，價格僅供參考。</div>
+</footer>
+</div>
+
+<script>
+const DATA=/*DATA*/null;
+const DIV=DATA.div;
+const SLOT={"Head":"頭部","Upper Limb":"上肢","Torso":"軀幹","Lower Limb":"下肢"};
+const TAG={boss:"頭目",map:"地圖王",act:"章節王"};
+const TIERS=[["S",5*DIV,"≥ 5 div"],["A",DIV,"1–5 div"],["B",50,"50c – 1 div"],["C",15,"15 – 50c"],["D",-1,"< 15c\n或無報價"]];
+const GRIM=Object.fromEntries(DATA.grim.filter(g=>g[2]).map(g=>[g[2],g[0]]));
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const price=c=>!c?"—":c>=DIV?`${(c/DIV).toFixed(c/DIV>=10?0:1)}<small>div</small>`:`${c>=10?Math.round(c):c.toFixed(1)}<small>c</small>`;
+const trade=(host,lg,type)=>`https://${host}/trade/search/${encodeURIComponent(lg)}?q=${encodeURIComponent(JSON.stringify({query:{type}}))}`;
+const NINJA="https://poe.ninja/poe1/economy/covens/viscera";
+const items=DATA.items.map(x=>{
+  const all=Object.values(x.tiers).flat();
+  const max=Math.max(0,...all.map(r=>r[1]));
+  const camp=x.drops.filter(d=>d.act), map=x.drops.filter(d=>!d.act);
+  const type=x.group==="pin"?"boss":map.length?"map":"act";
+  let place;
+  if(type==="map")place=map[0].zone;
+  else if(type==="boss"){const d=map[0]||camp[0];place=d.zone||d.boss;}
+  else place=`Act ${camp[0].act} ${camp[0].zone}`;
+  const act=x.act ?? camp[0]?.act ?? null;
+  const tier=TIERS.find(t=>max>=t[1])[0];
+  const hay=[x.en,x.tw,...x.drops.flatMap(d=>[d.boss,d.bossEn,d.zone,d.zoneEn]),...x.mods.map(m=>m[1]),...x.modsEn.map(m=>m[1])].join(" ").toLowerCase();
+  return {...x,max,camp,map,type,place,act,tier,hay};
+});
+document.getElementById("snap").textContent=new Date(DATA.snap).toLocaleString("zh-TW",{timeZone:"Asia/Taipei",month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit",hour12:false});
+document.getElementById("div").textContent=DIV;
+
+const st={type:"all",slot:"all",act:"all",q:""};
+try{Object.assign(st,JSON.parse(localStorage.getItem("vt")||"{}"),{q:""});}catch(e){}
+const save=()=>{try{localStorage.setItem("vt",JSON.stringify({type:st.type,slot:st.slot,act:st.act}))}catch(e){}};
+function chips(id,list,key){const el=document.getElementById(id);
+  el.innerHTML=list.map(([v,t])=>`<button class="chip" type="button" data-v="${v}">${t}</button>`).join("");
+  el.onclick=e=>{const b=e.target.closest(".chip");if(!b)return;st[key]=b.dataset.v;save();sync();render();};}
+chips("fType",[["all","全部"],["boss","頭目"],["map","地圖王"],["act","章節王"]],"type");
+chips("fSlot",[["all","全部部位"],...Object.entries(SLOT)],"slot");
+const fAct=document.getElementById("fAct");
+fAct.innerHTML=`<option value="all">全部章節</option>`+Array.from({length:10},(_,i)=>`<option value="${i+1}">Act ${i+1}</option>`).join("");
+fAct.onchange=()=>{st.act=fAct.value;save();render();};
+document.getElementById("q").oninput=e=>{st.q=e.target.value.trim().toLowerCase();render();};
+function sync(){
+  document.querySelectorAll("#fType .chip").forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===st.type));
+  document.querySelectorAll("#fSlot .chip").forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===st.slot));
+  fAct.value=st.act;}
+const pass=x=>(st.type==="all"||x.type===st.type)&&(st.slot==="all"||x.slot===st.slot)&&(st.act==="all"||x.act===+st.act)&&(!st.q||st.q.split(/\s+/).every(w=>x.hay.includes(w)));
+
+function tile(x){
+  return `<button class="tile" type="button" data-id="${x.id}" aria-expanded="false" aria-controls="det" title="${esc(x.en)}">
+  <span class="medal"><img src="${x.img}" alt=""></span>
+  <span class="n">${esc(x.tw)}</span><span class="p${x.max?"":" none"}">${price(x.max)}</span>
+  <span class="m"><span class="tag ${x.type}">${TAG[x.type]}</span><span class="z">${esc(x.place)}</span></span></button>`;}
+let openId=null;
+function render(){
+  const list=items.filter(pass);
+  document.getElementById("count").textContent=`${list.length} / ${items.length}`;
+  const html=TIERS.map(([L,,r])=>{const t=list.filter(x=>x.tier===L).sort((a,b)=>b.max-a.max);
+    if(!t.length)return "";
+    return `<section class="tier" aria-label="${L} 級"><div class="rail"><span class="medal" style="color:var(--${L})">${L}</span><span class="r">${esc(r)}</span></div><div class="tiles">${t.map(tile).join("")}</div></section>`}).join("");
+  document.getElementById("list").innerHTML=html||`<div class="empty">沒有符合的臟器</div>`;
+  if(openId!=null){const t=document.querySelector(`.tile[data-id="${openId}"]`);t?show(t,false):(openId=null);}}
+
+const LAB=l=>({Low:"Lesser",Med:"一般",High:"Greater",Queen:"巫后",Uber:"Uber","":"固定"}[l] ?? (/^\d$/.test(l)?"變體 "+l:l.replace("High","Greater")));
+const TL={Lesser:"Lesser",Normal:"一般",Greater:"Greater"};
+function detail(x){
+  const mods=x.mods.map(m=>`<div><span class="l ${m[0].startsWith("High")?"hi":m[0]==="Uber"||m[0]==="Queen"?"ub":""}">${esc(LAB(m[0]))}</span><span class="t">${esc(m[1])}</span></div>`).join("")||`<div class="note">poedb 尚無詞綴資料</div>`;
+  const where=d=>`<div><div class="k">${d.act?"Act "+d.act+" · 章節":x.type==="boss"?"頭目戰":"地圖"}</div>
+    <div class="z">${esc(d.zone||d.boss)}</div>${d.zone?`<div class="b">Boss：${esc(d.boss)}</div>`:""}
+    <div class="en">${esc(d.zoneEn||d.bossEn)}${d.zoneEn?" — "+esc(d.bossEn):""}</div></div>`;
+  const loc=[...x.map,...x.camp].map(where).join("")+(GRIM[x.en]?`<div class="grim">需要 Grim Fate：<b>${esc(GRIM[x.en])}</b></div>`:"")
+    +(x.map.length&&x.type==="map"?`<div class="note">Greater 只從地圖版 Boss 掉。</div>`:"");
+  const rows=["Lesser","Normal","Greater"].filter(k=>x.tiers[k]).flatMap(k=>x.tiers[k].map(r=>[TL[k],...r]));
+  const multi=rows.length>Object.keys(x.tiers).length;
+  const row=r=>`<tr><td class="l" title="${esc(r[1])}">${esc(multi&&r[1]?r[1]:r[0])}</td><td class="v">${price(r[2])}</td><td class="c">${r[3]} 掛</td><td class="a">${r[5]?`<a href="${NINJA}/${encodeURIComponent(r[5])}" target="_blank" rel="noopener">ninja ↗</a>`:""}</td></tr>`;
+  const sorted=multi?[...rows].sort((a,b)=>b[2]-a[2]):rows;
+  const table=sorted.length?`<table>${sorted.slice(0,6).map(row).join("")}</table>`+(sorted.length>6?`<details><summary>其餘 ${sorted.length-6} 種詞綴報價</summary><table>${sorted.slice(6).map(row).join("")}</table></details>`:""):`<div class="note">poe.ninja 目前無報價</div>`;
+  const links=[
+    x.ti?`<a class="btn main" href="${trade("www.pathofexile.com","Covens",x.en)}" target="_blank" rel="noopener">國際服 Trade ↗</a>`:"",
+    x.tt?`<a class="btn" href="${trade("pathofexile.tw","巫影密會",x.tt)}" target="_blank" rel="noopener">台服 Trade ↗</a>`:"",
+    `<a class="btn" href="https://poedb.tw/tw/${encodeURIComponent(x.slug)}" target="_blank" rel="noopener">poedb ↗</a>`].join("");
+  const rolls=!x.mods.length&&sorted.length>3;
+  const fx=rolls?`<div class="note" style="margin:0 0 6px">隨機帶一條詞綴，共 ${sorted.length} 種，依價格排序：</div>${table}`:`<div class="mods">${mods}</div>`;
+  const lo=Math.min(...sorted.map(r=>r[2]).filter(Boolean));
+  const mkt=rolls?`<div class="loc"><div><div class="k">價格區間</div><div class="z num">${price(lo)} – ${price(sorted[0][2])}</div></div></div>`:table;
+  const tiers=Object.keys(x.tiers).length;
+  return `<button class="x" type="button" aria-label="收合">×</button>
+  <div class="head"><span class="medal"><img src="${x.img}" alt=""></span><div><div class="n">${esc(x.tw)}</div><div class="e">${esc(x.en)} · ${SLOT[x.slot]||"—"}</div></div></div>
+  <div class="fx"><div class="h">效果</div>${fx}</div>
+  <div><div class="h">掉落位置</div><div class="loc">${loc}</div></div>
+  <div><div class="h">市集</div>${mkt}<div class="links">${links}</div>${x.ti&&tiers>1?`<div class="note">Trade 搜尋包含所有等級，Lesser / Greater 請看詞綴分辨。</div>`:""}</div>`;}
+
+const det=document.createElement("div");det.className="det";det.id="det";det.setAttribute("role","region");
+function show(t,scroll=true){
+  const x=items.find(i=>i.id===+t.dataset.id);openId=x.id;
+  document.querySelectorAll('.tile[aria-expanded="true"]').forEach(b=>b.setAttribute("aria-expanded","false"));
+  t.setAttribute("aria-expanded","true");
+  det.innerHTML=detail(x);det.setAttribute("aria-label",x.tw);
+  det.remove();
+  const top=t.offsetTop;let last=t;
+  for(const s of t.parentNode.querySelectorAll(".tile"))if(s.offsetTop===top)last=s;
+  last.after(det);
+  if(scroll)det.scrollIntoView({block:"nearest",behavior:matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth"});}
+function hide(){const t=document.querySelector(`.tile[data-id="${openId}"]`);openId=null;det.remove();if(t){t.setAttribute("aria-expanded","false");t.focus();}}
+document.getElementById("list").onclick=e=>{
+  if(e.target.closest(".det .x")){hide();return;}
+  const t=e.target.closest(".tile");if(!t)return;
+  +t.dataset.id===openId?hide():show(t);};
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&openId!=null)hide();});
+let rz;addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(()=>{if(openId!=null){const t=document.querySelector(`.tile[data-id="${openId}"]`);t&&show(t,false);}},120);});
+sync();render();
+</script>

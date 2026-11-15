@@ -1,0 +1,44 @@
+name: Update prices
+
+on:
+  schedule:
+    - cron: '17 * * * *'   # hourly; poe.ninja caches this API for 30 min
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+env:
+  LEAGUE: Covens
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch poe.ninja prices
+        run: |
+          curl -sSf --retry 3 --retry-delay 10 -A "Mozilla/5.0 (viscera-tierlist; GitHub Actions)" \
+            "https://poe.ninja/poe1/api/economy/stash/current/item/overview?league=${LEAGUE}&type=Viscera" \
+            -o dl/ninja.json
+      - name: Build page
+        run: |
+          python3 py/parse.py . > /dev/null
+          python3 py/build.py . _site/index.html
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deploy
+        uses: actions/deploy-pages@v4
