@@ -20,12 +20,27 @@ TI, TT = vtypes(base + '/dl/items.json'), vtypes(base + '/dl/twitems.json')
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import tradestats
 STATS = tradestats.load_index(base + '/dl/stats.json')
+# Look-alike map bosses (same model as the act boss) — not confirmed to drop the viscera.
+# (bossEn, bossTw, mapEn, mapTw, tier)
+UNV = {
+ "Lithic Haunches": [("Crusher of Gladiators", "粉碎衛士", "Racecourse", "古競速場", 10)],
+ "Smouldering Leg": [("Renkarr, The Kiln Keeper", "烘爐看守．倫卡爾", "Silo", "儲物倉", 1)],
+ "Necromancer's Mask": [("Xixic, High Necromancer", "首席操靈者希西克", "Bone Crypt", "骨跡陵墓", 9)],
+ "Statue Leg": [("Suncaller Asha", "喚日者艾沙", "Park", "園林苑", 13)],
+ "Defaced Bust": [("Suncaller Asha", "喚日者艾沙", "Park", "園林苑", 13)],
+ "Captain's Leg": [("Blackguard Avenger", "烏旗守衛復仇者", "Promenade", "月色迴廊", 10)],
+ "Blackguard's Leg": [("Legius Garhall", "雷吉斯葛賀爾", "Ancient City", "遠古危城", 9)],
+ "Infested Torso": [("The Primal One", "史源者", "Thicket", "驚懼樹叢", 16),
+                    ("Blood Progenitor", "巨猿血祖", "Tropical Island", "晴空幽島", 12)],
+}
 items = []
 for i, v in enumerate(d):
     drops = []
     for en, tw in zip(v['drops'], v['drops_tw'] or v['drops']):
         a, b = split_drop(en), split_drop(tw)
         drops.append(dict(act=a.get('act'), boss=b['boss'], bossEn=a['boss'], zone=b['zone'], zoneEn=a['zone']))
+    for be, bt, me, mt, t in UNV.get(v['name'], []):
+        drops.append(dict(u=1, boss=bt, bossEn=be, zone=f'{mt} T{t}', zoneEn=f'{me} Map T{t}'))
     tiers = {}
     for p in v['prices']:
         tiers.setdefault(p['tier'], []).append([p['variant'] or '', p['chaos'] or 0, p['listed'] or 0, p['name'], p['did'] or ''])
@@ -66,6 +81,9 @@ if len(sys.argv) > 2:  # standalone site: full document skeleton
 os.makedirs(os.path.dirname(dest), exist_ok=True)
 open(dest, 'w', encoding='utf8').write(out)
 print('div', DIV, 'items', len(items), 'bytes', len(out.encode()))
+missing = set(UNV) - {x['en'] for x in items}
+assert not missing, missing
+print('unverified drops:', sum(1 for x in items for e in x['drops'] if e.get('u')))
 print('no slot:', [x['en'] for x in items if not x['slot']])
 multi = [x for x in items if len(x['tiers']) > 1]
 print('per-tier trade links:', sum(1 for x in multi if x['tq']), '/', len(multi))

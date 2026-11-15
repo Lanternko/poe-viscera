@@ -221,7 +221,7 @@ const EXT=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-wid
 const items=DATA.items.map(x=>{
   const all=Object.values(x.tiers).flat();
   const max=Math.max(0,...all.map(r=>r[1]));
-  const camp=x.drops.filter(d=>d.act), map=x.drops.filter(d=>!d.act);
+  const camp=x.drops.filter(d=>d.act), map=x.drops.filter(d=>!d.act&&!d.u), unv=x.drops.filter(d=>d.u);
   const type=x.group==="pin"?"boss":map.length?"map":"act";
   let place,placeEn;
   if(type==="map"){place=map[0].zone;placeEn=map[0].zoneEn;}
@@ -230,7 +230,7 @@ const items=DATA.items.map(x=>{
   const act=x.act ?? camp[0]?.act ?? null;
   const tier=TIERS.find(t=>max>=t[1])[0];
   const hay=[x.en,x.tw,...x.drops.flatMap(d=>[d.boss,d.bossEn,d.zone,d.zoneEn]),...x.mods.map(m=>m[1]),...x.modsEn.map(m=>m[1])].join(" ").toLowerCase();
-  return {...x,max,camp,map,type,place,placeEn,act,tier,hay};
+  return {...x,max,camp,map,unv,type,place,placeEn,act,tier,hay};
 });
 document.getElementById("snap").textContent=new Date(DATA.snap).toLocaleString("zh-TW",{timeZone:"Asia/Taipei",month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit",hour12:false});
 document.getElementById("div").textContent=DIV;
@@ -282,10 +282,10 @@ function detail(x){
   const en=EN();
   const mods=(en?x.modsEn:x.mods).map(m=>`<div><span class="l">${esc(LAB(m[0]))}</span><span class="t">${esc(m[1])}</span></div>`).join("")||`<div class="note">poedb 尚無詞綴資料</div>`;
   const where=d=>{const z=en?d.zoneEn:d.zone,b=en?d.bossEn:d.boss;
-    return `<div><div class="k">${d.act?"Act "+d.act:x.type==="boss"?"頭目戰":"地圖"}</div>
+    return `<div><div class="k">${d.u?(en?"Map (unverified)":"地圖（未證實）"):d.act?"Act "+d.act:x.type==="boss"?"頭目戰":"地圖"}</div>
     <div class="z">${esc(z||b)}${z?` <span class="detail-role-tag">· ${esc(b)}</span>`:""}</div>
     ${en?"":`<div class="en">${esc(d.zoneEn||d.bossEn)}${d.zoneEn?" — "+esc(d.bossEn):""}</div>`}</div>`;};
-  const loc=[...x.map,...x.camp].map(where).join("")+(GRIM[x.en]?`<div><div class="k">需要 Grim Fate</div><div class="z">${esc(GRIM[x.en])}</div></div>`:"");
+  const loc=[...x.map,...x.camp,...x.unv].map(where).join("")+(GRIM[x.en]?`<div><div class="k">需要 Grim Fate</div><div class="z">${esc(GRIM[x.en])}</div></div>`:"");
   const rows=["Lesser","Normal","Greater"].filter(k=>x.tiers[k]).flatMap(k=>x.tiers[k].map(r=>[TL[k],...r]));
   const tiers=Object.keys(x.tiers).length;
   const multi=rows.length>tiers;
