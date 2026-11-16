@@ -20,6 +20,7 @@
   --augment-icon-surface:#0b0e13;
   --font-ui:"Noto Sans TC",-apple-system,"Segoe UI","Microsoft JhengHei","PingFang TC",sans-serif;
   --font-caption:"Noto Serif TC","Source Han Serif TC","PingFang TC","PMingLiU","Songti TC",serif;
+  --nfx-slab:rgba(255,255,255,.07); --nfx-slab-hover:rgba(255,255,255,.12); --nfx-dim:#9a9a9a;
   --nfx-fg:#e5e5e5; --nfx-strong:#fff; --nfx-line:rgba(229,229,229,.4); --nfx-on-fg:#141414;
   --nfx-search:#2a2a2a; --nfx-search-focus:#141414; --nfx-search-ring:#fff; --nfx-search-icon:#a3a3a3;
   --T1:#ff5a3c; --T2:#f5c518; --T3:#8ec441; --T4:#3aa0ff; --T5:#7a7f8a;
@@ -31,6 +32,7 @@
   --text:#1a1e26; --text-muted:#5b6472; --text-dim:#818b99;
   --border:rgba(0,0,0,.10); --border-strong:rgba(0,0,0,.16);
   --accent:#9d4edd; --accent-soft:#7e22ce; --accent-on:#ffffff;
+  --nfx-slab:rgba(0,0,0,.06); --nfx-slab-hover:rgba(0,0,0,.1); --nfx-dim:#6b6e75;
   --nfx-fg:#1c1d21; --nfx-strong:#000; --nfx-line:rgba(28,29,33,.32); --nfx-on-fg:#fff;
   --nfx-search:#e1e4ea; --nfx-search-focus:#fff; --nfx-search-ring:#1c1d21; --nfx-search-icon:#6b6e75}}
 :root[data-theme="light"]{
@@ -40,6 +42,7 @@
   --text:#1a1e26; --text-muted:#5b6472; --text-dim:#818b99;
   --border:rgba(0,0,0,.10); --border-strong:rgba(0,0,0,.16);
   --accent:#9d4edd; --accent-soft:#7e22ce; --accent-on:#ffffff;
+  --nfx-slab:rgba(0,0,0,.06); --nfx-slab-hover:rgba(0,0,0,.1); --nfx-dim:#6b6e75;
   --nfx-fg:#1c1d21; --nfx-strong:#000; --nfx-line:rgba(28,29,33,.32); --nfx-on-fg:#fff;
   --nfx-search:#e1e4ea; --nfx-search-focus:#fff; --nfx-search-ring:#1c1d21; --nfx-search-icon:#6b6e75}
 *{box-sizing:border-box}
@@ -79,6 +82,15 @@ h1{margin:0;font-size:22px;font-weight:600;line-height:1.1}
 .chip:hover{border-color:var(--nfx-fg);color:var(--nfx-strong)}
 .chip[aria-pressed="true"]{background:var(--accent);color:var(--accent-on);border-color:var(--accent)}
 .chip.all[aria-pressed="true"]{background:var(--nfx-fg);color:var(--nfx-on-fg);border-color:var(--nfx-fg)}
+/* Copied: AramMeta .aug-rarity-bar — one group of single-choice filters = one slab split by slashes. */
+.chips.slab{gap:0;flex-wrap:nowrap}
+.chips.slab .chip{flex:1;border:0;border-radius:0;padding:11px 18px;font-size:14px;font-weight:600;letter-spacing:.04em;white-space:nowrap;margin-right:-10px;
+  background:var(--nfx-slab);color:var(--nfx-dim);clip-path:polygon(14px 0,100% 0,calc(100% - 14px) 100%,0 100%)}
+.chips.slab .chip:first-child{clip-path:polygon(0 0,100% 0,calc(100% - 14px) 100%,0 100%)}
+.chips.slab .chip:last-child{clip-path:polygon(14px 0,100% 0,100% 100%,0 100%);margin-right:0}
+.chips.slab .chip:hover{color:var(--nfx-strong);background:var(--nfx-slab-hover)}
+.chips.slab .chip[aria-pressed="true"]{background:var(--accent);color:var(--accent-on)}
+#fView .chip[aria-pressed="true"],.chips.slab .chip.all[aria-pressed="true"]{background:var(--nfx-fg);color:var(--nfx-on-fg)}
 select{height:32px;padding:0 10px;font:inherit;font-size:13px;color:var(--text);background:transparent;border:1px solid var(--border);border-radius:8px;cursor:pointer}
 select:hover{border-color:var(--border-strong)}
 select option{background:var(--surface);color:var(--text)}
@@ -189,9 +201,9 @@ footer a{color:var(--text-muted)}
 </header>
 
 <div class="bar">
-  <div class="chips" id="fView" role="group" aria-label="檢視"></div>
-  <div class="chips" id="fType" role="group" aria-label="來源類型"></div>
-  <div class="chips" id="fSlot" role="group" aria-label="部位"></div>
+  <div class="chips slab" id="fView" role="group" aria-label="檢視"></div>
+  <div class="chips slab" id="fType" role="group" aria-label="來源類型"></div>
+  <div class="chips slab" id="fSlot" role="group" aria-label="部位"></div>
   <select id="fAct" aria-label="章節"></select>
   <span class="shown-count" id="count"></span>
   <label class="search-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input class="search" type="search" id="q" placeholder="名稱、地圖、Boss、詞綴" aria-label="搜尋"></label>
