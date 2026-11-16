@@ -299,7 +299,7 @@ function render(){
   document.getElementById("count").textContent=`${list.length} / ${items.length}`;
   const html=TIERS.map(([L,,r])=>{const t=list.filter(x=>x.tier===L).sort((a,b)=>b.max-a.max);
     if(!t.length)return "";
-    return `<section class="tier-block" style="--tier-color:${COLOR[L]}"><h2 class="tier-heading"><span class="tier-pill">${L}</span><span class="tier-count">${esc(r)} · ${t.length} 件</span></h2><div class="tier-grid">${t.map(tile).join("")}</div></section>`}).join("");
+    return `<section class="tier-block" style="--tier-color:${COLOR[L]}"><h2 class="tier-heading"><span class="tier-pill">${L}</span><span class="tier-count">${esc(r)} · ${t.length} 件</span></h2><div class="tier-grid">${t.map(x=>tile(x)).join("")}</div></section>`}).join("");
   document.getElementById("list").innerHTML=html||`<div class="empty">沒有符合的臟器</div>`;
   if(openId!=null){const t=document.querySelector(`.item[data-id="${openId}"]`);t?show(t,false):(openId=null);}}
 
