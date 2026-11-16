@@ -120,6 +120,7 @@ select option{background:var(--surface);color:var(--text)}
 .item .p{font-size:15px;font-weight:700;white-space:nowrap;text-align:right;font-variant-numeric:tabular-nums lining-nums}
 .item .p small,.unit{font-size:11px;font-weight:600;color:var(--text-muted);margin-left:2px}
 .item .p.none{color:var(--text-dim)}
+.item .m .hl{color:var(--accent-soft);font-weight:600} /* NEW: highlight for the 頭目 tag, uses the existing link color token */
 .item .m{grid-column:2/4;font-size:12px;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 /* NEW: by-map view. .map-h copies .detail-col h3; .item-none is an .item with no viscera (no hover lift, dashed icon frame). */
 .map-h{display:flex;align-items:baseline;gap:8px;margin:14px 0 8px;font-size:13px;font-weight:600;letter-spacing:.3px}
@@ -285,7 +286,7 @@ function tile(x,meta){
   return `<button class="item" type="button" data-id="${x.id}" aria-expanded="false" aria-controls="det" title="${esc(EN()?x.tw:x.en)}"${meta?` style="--tier-color:${COLOR[x.tier]}"`:""}>
   <span class="icon"><img src="${x.img}" alt=""></span>
   <span class="n">${esc(nm(x))}</span><span class="p${x.max?"":" none"}">${price(x.max)}</span>
-  <span class="m">${meta??`${TAG[x.type]} · ${esc(EN()?x.placeEn:x.place)}`}</span></button>`;}
+  <span class="m">${meta??`${x.type==="boss"?`<span class="hl">${TAG.boss}</span>`:TAG[x.type]} · ${esc(EN()?x.placeEn:x.place)}`}</span></button>`;}
 // by-map view: every current map boss -> its viscera, with how sure we are
 const CONF={k:["確定","Confirmed"],a:["推測","Likely"],s:["可能與章節王共掉","May share act boss's"],c:["候選","Candidate"]};
 const BAND=t=>t<=5?"T5":t<=10?"T2":"T1";
