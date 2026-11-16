@@ -81,8 +81,13 @@ grim = [
  ["The Neglectful", "Incarnation of Neglect", "Incarnation of Neglect's Cube"],
  ["The Dreadful", "Incarnation of Dread", "Incarnation of Dread's Head"],
 ]
+ids = {x['en']: x['id'] for x in items}
+maps = json.load(open(base + '/py/bymap.json', encoding='utf8'))
+for m in maps:
+    for b in m['bosses']:
+        b['v'] = [[ids[n], c] for n, c in b['v']]
 tpl = open(base + '/py/template.html', encoding='utf8').read()
-out = tpl.replace('/*DATA*/null', json.dumps(dict(items=items, div=DIV, grim=grim, snap=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')), ensure_ascii=False, separators=(',', ':')))
+out = tpl.replace('/*DATA*/null', json.dumps(dict(items=items, maps=maps, div=DIV, grim=grim, snap=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')), ensure_ascii=False, separators=(',', ':')))
 dest = sys.argv[2] if len(sys.argv) > 2 else base + '/viscera.html'
 if len(sys.argv) > 2:  # standalone site: full document skeleton
     out = ('<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8">'

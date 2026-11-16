@@ -1,0 +1,2108 @@
+[
+ {
+  "tier": 1,
+  "en": "Malformation",
+  "tw": "畸形亡域",
+  "bosses": [
+   {
+    "en": "Nightmare Manifest",
+    "tw": "憎恨夢魘",
+    "v": [
+     [
+      "Engorged Eye",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 1,
+  "en": "Marshes",
+  "tw": "惡臭沼地",
+  "bosses": [
+   {
+    "en": "Tore, Towering Ancient",
+    "tw": "巨古托爾",
+    "v": [
+     [
+      "Gladiator's Heart",
+      "s"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 1,
+  "en": "Pit",
+  "tw": "巨坑",
+  "bosses": [
+   {
+    "en": "Olof, Son of the Headsman",
+    "tw": "獵頭者之子．歐洛夫",
+    "v": [
+     [
+      "Gladiator's Heart",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 1,
+  "en": "Silo",
+  "tw": "儲物倉",
+  "bosses": [
+   {
+    "en": "Renkarr, The Kiln Keeper",
+    "tw": "烘爐看守．倫卡爾",
+    "v": [
+     [
+      "Smouldering Leg",
+      "a"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 2,
+  "en": "Colosseum",
+  "tw": "大決鬥場",
+  "bosses": [
+   {
+    "en": "Ambrius, Legion Slayer",
+    "tw": "軍團殺手安布里奧斯",
+    "v": [
+     [
+      "Swordmaster's Blade",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 2,
+  "en": "Crater",
+  "tw": "殘破殞坑",
+  "bosses": [
+   {
+    "en": "Megaera",
+    "tw": "炎靈密卡拉",
+    "v": [
+     [
+      "Scorched Arm",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 2,
+  "en": "Geode",
+  "tw": "詭譎晶洞",
+  "bosses": [
+   {
+    "en": "Avatar of Undoing",
+    "tw": "毀滅之像",
+    "v": [
+     [
+      "Chaos Golem's Core",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 2,
+  "en": "Jungle Valley",
+  "tw": "劇毒林谷",
+  "bosses": [
+   {
+    "en": "Queen of the Great Tangle",
+    "tw": "紛爭女王",
+    "v": [
+     [
+      "Arachnid Leg",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 2,
+  "en": "Lava Lake",
+  "tw": "岩漿熔湖",
+  "bosses": [
+   {
+    "en": "Kitava, The Destroyer",
+    "tw": "毀滅者奇塔弗",
+    "v": [
+     [
+      "Ravenous Skull",
+      "a"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 2,
+  "en": "Mud Geyser",
+  "tw": "陰晦泥灘",
+  "bosses": [
+   {
+    "en": "Tunneltrap",
+    "tw": "熾魂",
+    "v": [
+     [
+      "Devourer's Antenna",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 2,
+  "en": "Overgrown Ruin",
+  "tw": "長草遺跡",
+  "bosses": [
+   {
+    "en": "Visceris",
+    "tw": "伊瑟斯",
+    "v": [
+     [
+      "Inquisitor's Claw",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 2,
+  "en": "Shrine",
+  "tw": "奇術秘殿",
+  "bosses": [
+   {
+    "en": "Piety the Empyrean",
+    "tw": "天雷之使派蒂",
+    "v": [
+     [
+      "Thaumaturge's Head",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 3,
+  "en": "Crimson Temple",
+  "tw": "緋紅神殿",
+  "bosses": [
+   {
+    "en": "The Sanguine Siren",
+    "tw": "血腥女妖",
+    "v": [
+     [
+      "Wraith Claws",
+      "c"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 3,
+  "en": "Defiled Cathedral",
+  "tw": "不潔教堂",
+  "bosses": [
+   {
+    "en": "Woad, Mockery of Man",
+    "tw": "功德法師沃德",
+    "v": [
+     [
+      "Prosthetic Leg",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 3,
+  "en": "Iceberg",
+  "tw": "極原冰帽",
+  "bosses": [
+   {
+    "en": "Yorishi, Aurora-sage",
+    "tw": "暮光信徒悠利希",
+    "v": []
+   },
+   {
+    "en": "Jeinei Yuushu",
+    "tw": "珍涅優蘇",
+    "v": []
+   },
+   {
+    "en": "Otesha, the Giantslayer",
+    "tw": "巨人殺手歐提莎",
+    "v": []
+   }
+  ]
+ },
+ {
+  "tier": 3,
+  "en": "Mausoleum",
+  "tw": "靜縊陵墓",
+  "bosses": [
+   {
+    "en": "Tolman, the Exhumer",
+    "tw": "挖掘者托爾曼",
+    "v": [
+     [
+      "Golden Ankh",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 3,
+  "en": "Peninsula",
+  "tw": "乾潮林地",
+  "bosses": [
+   {
+    "en": "Titan of the Grove",
+    "tw": "叢林巨石",
+    "v": [
+     [
+      "Golemic Stone",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 3,
+  "en": "Strand",
+  "tw": "致命岩灘",
+  "bosses": [
+   {
+    "en": "Master of the Blade",
+    "tw": "白刃宗師",
+    "v": [
+     [
+      "Bandit Rogue's Head",
+      "s"
+     ]
+    ]
+   },
+   {
+    "en": "Massier",
+    "tw": "麥西爾",
+    "v": [
+     [
+      "Cutthroat's Head",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 4,
+  "en": "Arcade",
+  "tw": "崩壞長廊",
+  "bosses": [
+   {
+    "en": "Herald of Ashes",
+    "tw": "灰燼之捷",
+    "v": [
+     [
+      "Flaming Ribbon",
+      "k"
+     ]
+    ]
+   },
+   {
+    "en": "Herald of Thunder",
+    "tw": "閃電之捷",
+    "v": [
+     [
+      "Flaming Ribbon",
+      "s"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 4,
+  "en": "Dig",
+  "tw": "違禁掘坑",
+  "bosses": [
+   {
+    "en": "Stalker of the Endless Dunes",
+    "tw": "無邊沙丘潛行者",
+    "v": [
+     [
+      "Desert Queen's Crown",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 4,
+  "en": "Mesa",
+  "tw": "平頂荒漠",
+  "bosses": [
+   {
+    "en": "Oak the Mighty",
+    "tw": "巨力歐克",
+    "v": [
+     [
+      "Bandit Warrior's Head",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 4,
+  "en": "Residence",
+  "tw": "神主居所",
+  "bosses": [
+   {
+    "en": "Excellis Aurafix",
+    "tw": "雷霆之使",
+    "v": [
+     [
+      "Aristocrat's Torso",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 4,
+  "en": "Spider Lair",
+  "tw": "巨蛛巢穴",
+  "bosses": [
+   {
+    "en": "Thraxia",
+    "tw": "瑟拉西亞",
+    "v": [
+     [
+      "Chitinous Leg",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 4,
+  "en": "Underground Sea",
+  "tw": "濱海幽穴",
+  "bosses": [
+   {
+    "en": "Merveil, the Reflection",
+    "tw": "鏡界之語莫薇兒",
+    "v": [
+     [
+      "Siren's Tentacle",
+      "k"
+     ]
+    ]
+   },
+   {
+    "en": "Merveil, the Returned",
+    "tw": "莫薇兒之魄",
+    "v": [
+     [
+      "Siren's Tentacle",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 5,
+  "en": "Academy",
+  "tw": "惡靈學院",
+  "bosses": [
+   {
+    "en": "The Arbiter of Knowledge",
+    "tw": "知識之力",
+    "v": [
+     [
+      "Scholar's Arm",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 5,
+  "en": "Barrows",
+  "tw": "熱林塚墓",
+  "bosses": [
+   {
+    "en": "Beast of the Pits",
+    "tw": "地底巨獸",
+    "v": [
+     [
+      "Gargantuan Claws",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 5,
+  "en": "Cage",
+  "tw": "羈破牢籠",
+  "bosses": [
+   {
+    "en": "Executioner Bloodwing",
+    "tw": "血翼劊子手",
+    "v": [
+     [
+      "Justicar's Helm",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 5,
+  "en": "Fields",
+  "tw": "無疆田野",
+  "bosses": [
+   {
+    "en": "Drek, Apex Hunter",
+    "tw": "獵者之巔德雷克",
+    "v": [
+     [
+      "Ornate Torso",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 5,
+  "en": "Infested Valley",
+  "tw": "病疫林谷",
+  "bosses": [
+   {
+    "en": "Gorulis, Will-Thief",
+    "tw": "意念竊取者葛羅斯",
+    "v": [
+     [
+      "Arachnid Egg Sac",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 5,
+  "en": "Lookout",
+  "tw": "如履危牆",
+  "bosses": [
+   {
+    "en": "The Grey Plague",
+    "tw": "銀灰死疫",
+    "v": [
+     [
+      "Diseased Wing",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 5,
+  "en": "Overgrown Shrine",
+  "tw": "密草神殿",
+  "bosses": [
+   {
+    "en": "Maligaro the Mutilator",
+    "tw": "毀壞者馬雷葛蘿",
+    "v": [
+     [
+      "Inquisitor's Claw",
+      "s"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 5,
+  "en": "Volcano",
+  "tw": "火山炎域",
+  "bosses": [
+   {
+    "en": "Forest of Flames",
+    "tw": "烈焰之森",
+    "v": [
+     [
+      "Carved Haunches",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 6,
+  "en": "Belfry",
+  "tw": "雲頂鐘樓",
+  "bosses": [
+   {
+    "en": "Lord of the Grey",
+    "tw": "蒼老君王",
+    "v": [
+     [
+      "Ravenous Skull",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 6,
+  "en": "Burial Chambers",
+  "tw": "旱地墓室",
+  "bosses": [
+   {
+    "en": "Witch of the Cauldron",
+    "tw": "冥缶之女",
+    "v": [
+     [
+      "Bandit Witch's Head",
+      "s"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 6,
+  "en": "Core",
+  "tw": "核心",
+  "bosses": [
+   {
+    "en": "Eater of Souls",
+    "tw": "食魂者",
+    "v": [
+     [
+      "Corrupted Carapace",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 6,
+  "en": "Crystal Ore",
+  "tw": "紫晶礦山",
+  "bosses": [
+   {
+    "en": "Lord of the Hollows",
+    "tw": "空洞之主",
+    "v": [
+     [
+      "Pocked Leg",
+      "k"
+     ]
+    ]
+   },
+   {
+    "en": "Messenger of the Hollows",
+    "tw": "空洞使者",
+    "v": [
+     [
+      "Flesh-fused Lantern",
+      "k"
+     ]
+    ]
+   },
+   {
+    "en": "Champion of the Hollows",
+    "tw": "空洞勇士",
+    "v": [
+     [
+      "Brute's Arm",
+      "c"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 6,
+  "en": "Grotto",
+  "tw": "幽暗地穴",
+  "bosses": [
+   {
+    "en": "Void Anomaly",
+    "tw": "虛空之異",
+    "v": [
+     [
+      "Chaos Golem's Core",
+      "s"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 6,
+  "en": "Shore",
+  "tw": "暮光海灘",
+  "bosses": [
+   {
+    "en": "Belcer, the Pirate Lord",
+    "tw": "海盜之主貝爾瑟",
+    "v": [
+     [
+      "Mariner's Tricorne",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 7,
+  "en": "Basilica",
+  "tw": "聖殿",
+  "bosses": [
+   {
+    "en": "Konley, the Unrepentant",
+    "tw": "無賴法師康利",
+    "v": [
+     [
+      "Hallowed Descry",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 7,
+  "en": "City Square",
+  "tw": "危城廣場",
+  "bosses": [
+   {
+    "en": "Carius, the Unnatural",
+    "tw": "超然的卡洛斯",
+    "v": [
+     [
+      "Defaced Bust",
+      "c"
+     ]
+    ]
+   },
+   {
+    "en": "Pileah, Corpse Burner",
+    "tw": "焚屍者波莉亞",
+    "v": [
+     [
+      "Flaming Furnace",
+      "k"
+     ]
+    ]
+   },
+   {
+    "en": "Pileah, Burning Corpse",
+    "tw": "燃屍者波莉亞",
+    "v": [
+     [
+      "Flaming Furnace",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 7,
+  "en": "Palace",
+  "tw": "神域之殿",
+  "bosses": [
+   {
+    "en": "God's Chosen",
+    "tw": "神宗之體",
+    "v": [
+     [
+      "Despot's Fist",
+      "k"
+     ]
+    ]
+   },
+   {
+    "en": "The Hallowed Husk",
+    "tw": "超靈之體",
+    "v": []
+   }
+  ]
+ },
+ {
+  "tier": 7,
+  "en": "Ramparts",
+  "tw": "濱海堡壘",
+  "bosses": [
+   {
+    "en": "The Reaver",
+    "tw": "戮靈",
+    "v": [
+     [
+      "Spined Claws",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 7,
+  "en": "Relic Chambers",
+  "tw": "古典密室",
+  "bosses": [
+   {
+    "en": "Litanius, the Black Prayer",
+    "tw": "暗黑祈禱者利坦諾斯",
+    "v": [
+     [
+      "Hollowed Skull",
+      "c"
+     ],
+     [
+      "Flayed Arm",
+      "c"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 7,
+  "en": "Tower",
+  "tw": "闇獄尖塔",
+  "bosses": [
+   {
+    "en": "Liantra",
+    "tw": "蘭恩塔",
+    "v": [
+     [
+      "Flayed Visage",
+      "s"
+     ]
+    ]
+   },
+   {
+    "en": "Bazur",
+    "tw": "巴瑟",
+    "v": [
+     [
+      "Flayed Visage",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 8,
+  "en": "Cemetery",
+  "tw": "公墓",
+  "bosses": [
+   {
+    "en": "Erebix, Light's Bane",
+    "tw": "光明剋星艾爾畢斯",
+    "v": [
+     [
+      "Blackened Lungs",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 8,
+  "en": "Coves",
+  "tw": "疾風峽灣",
+  "bosses": [
+   {
+    "en": "Telvar, the Inebriated",
+    "tw": "醉漢特福瓦",
+    "v": [
+     [
+      "Wraith Claws",
+      "c"
+     ]
+    ]
+   },
+   {
+    "en": "Pirate Treasure",
+    "tw": "海盜的寶藏",
+    "v": []
+   }
+  ]
+ },
+ {
+  "tier": 8,
+  "en": "Fungal Hollow",
+  "tw": "毒菌魔域",
+  "bosses": [
+   {
+    "en": "Aulen Greychain",
+    "tw": "奧倫．格雷成",
+    "v": [
+     [
+      "Bandit Warrior's Head",
+      "s"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 8,
+  "en": "Graveyard",
+  "tw": "墮影墓場",
+  "bosses": [
+   {
+    "en": "Thunderskull",
+    "tw": "雷鳴之骸",
+    "v": [
+     [
+      "Hollowed Skull",
+      "c"
+     ],
+     [
+      "Flayed Arm",
+      "c"
+     ]
+    ]
+   },
+   {
+    "en": "Steelpoint the Avenger",
+    "tw": "復仇者鋼鋒",
+    "v": [
+     [
+      "Skeletal Archer's Arm",
+      "k"
+     ]
+    ]
+   },
+   {
+    "en": "Champion of Frost",
+    "tw": "冰霜霸主",
+    "v": [
+     [
+      "Skeletal Warrior's Leg",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 8,
+  "en": "Terrace",
+  "tw": "露台花園",
+  "bosses": [
+   {
+    "en": "Varhesh, Shimmering Aberration",
+    "tw": "微光之屍弗賽斯",
+    "v": [
+     [
+      "Terrifying Maw",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 8,
+  "en": "Waste Pool",
+  "tw": "死寂泥溝",
+  "bosses": [
+   {
+    "en": "Portentia, the Foul",
+    "tw": "咒靈珀坦沙",
+    "v": [
+     [
+      "Hag's Stomach",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 9,
+  "en": "Ancient City",
+  "tw": "遠古危城",
+  "bosses": [
+   {
+    "en": "Legius Garhall",
+    "tw": "雷吉斯葛賀爾",
+    "v": [
+     [
+      "Captain's Leg",
+      "c"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 9,
+  "en": "Bone Crypt",
+  "tw": "骨跡陵墓",
+  "bosses": [
+   {
+    "en": "Xixic, High Necromancer",
+    "tw": "首席操靈者希西克",
+    "v": [
+     [
+      "Necromancer's Mask",
+      "a"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 9,
+  "en": "Caldera",
+  "tw": "火山炎口",
+  "bosses": [
+   {
+    "en": "The Infernal King",
+    "tw": "獄炎之王",
+    "v": [
+     [
+      "Blazing Skull",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 9,
+  "en": "Channel",
+  "tw": "秘密通道",
+  "bosses": [
+   {
+    "en": "The Winged Death",
+    "tw": "雙翼死神",
+    "v": [
+     [
+      "Vulture's Gut",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 9,
+  "en": "Mineral Pools",
+  "tw": "濕地礦山",
+  "bosses": [
+   {
+    "en": "Shock and Horror",
+    "tw": "恐懼之雷",
+    "v": [
+     [
+      "Galvanic Tentacle",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 9,
+  "en": "Villa",
+  "tw": "魅影別墅",
+  "bosses": [
+   {
+    "en": "The High Templar",
+    "tw": "神主之靈",
+    "v": []
+   }
+  ]
+ },
+ {
+  "tier": 10,
+  "en": "Carcass",
+  "tw": "惡臭屍域",
+  "bosses": [
+   {
+    "en": "Amalgam of Nightmares",
+    "tw": "夢魘金體",
+    "v": [
+     [
+      "Hag's Head",
+      "k"
+     ],
+     [
+      "Inquisitor's Head",
+      "k"
+     ],
+     [
+      "Witch's Head",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 10,
+  "en": "Dunes",
+  "tw": "暮色沙丘",
+  "bosses": [
+   {
+    "en": "The Blacksmith",
+    "tw": "惡靈鐵匠",
+    "v": [
+     [
+      "Dessicated Head",
+      "c"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 10,
+  "en": "Promenade",
+  "tw": "月色迴廊",
+  "bosses": [
+   {
+    "en": "Blackguard Avenger",
+    "tw": "烏旗守衛復仇者",
+    "v": [
+     [
+      "Soldier's Head",
+      "k"
+     ]
+    ]
+   },
+   {
+    "en": "Blackguard Tempest",
+    "tw": "烏旗守衛之雷",
+    "v": [
+     [
+      "Captain's Leg",
+      "c"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 10,
+  "en": "Racecourse",
+  "tw": "古競速場",
+  "bosses": [
+   {
+    "en": "Shredder of Gladiators",
+    "tw": "毀滅衛士",
+    "v": [
+     [
+      "Lion's Claws",
+      "k"
+     ]
+    ]
+   },
+   {
+    "en": "Crusher of Gladiators",
+    "tw": "粉碎衛士",
+    "v": [
+     [
+      "Lithic Haunches",
+      "a"
+     ]
+    ]
+   },
+   {
+    "en": "Bringer of Blood",
+    "tw": "嗜血使者",
+    "v": [
+     [
+      "Pit Fighter's Helm",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 10,
+  "en": "Scriptorium",
+  "tw": "墓影書坊",
+  "bosses": [
+   {
+    "en": "Gisale, Thought Thief",
+    "tw": "盜夢吉賽爾",
+    "v": [
+     [
+      "Flayed Visage",
+      "s"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 10,
+  "en": "Siege",
+  "tw": "禁斷圍城",
+  "bosses": [
+   {
+    "en": "Tahsin, Warmaker",
+    "tw": "起亂者達斯",
+    "v": [
+     [
+      "Ancestor's Club",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 10,
+  "en": "Spider Forest",
+  "tw": "巨蛛之林",
+  "bosses": [
+   {
+    "en": "Enticer of Rot",
+    "tw": "腐化魅惑者",
+    "v": [
+     [
+      "Bandit Witch's Head",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 10,
+  "en": "Underground River",
+  "tw": "地底之河",
+  "bosses": [
+   {
+    "en": "It That Fell",
+    "tw": "邪靈體",
+    "v": [
+     [
+      "Ursine Flesh",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 11,
+  "en": "Armoury",
+  "tw": "軍械庫",
+  "bosses": [
+   {
+    "en": "Warmonger",
+    "tw": "狂戰之魔",
+    "v": [
+     [
+      "General's Head",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 11,
+  "en": "Cold River",
+  "tw": "寒河",
+  "bosses": [
+   {
+    "en": "Ara, Sister of Light",
+    "tw": "光之姊妹．艾拉",
+    "v": [
+     [
+      "Solar Shield",
+      "k"
+     ]
+    ]
+   },
+   {
+    "en": "Khor, Sister of Shadows",
+    "tw": "暗影姊妹．霍爾",
+    "v": [
+     [
+      "Crescent Blade",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 11,
+  "en": "Colonnade",
+  "tw": "激戰柱廊",
+  "bosses": [
+   {
+    "en": "Tyrant",
+    "tw": "暴君",
+    "v": [
+     [
+      "General's Head",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 11,
+  "en": "Desert Spring",
+  "tw": "硫磺荒漠",
+  "bosses": [
+   {
+    "en": "Terror of the Infinite Drifts",
+    "tw": "無盡漂泊之懼",
+    "v": [
+     [
+      "Scorpion Stinger",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 11,
+  "en": "Maze",
+  "tw": "冥神之域",
+  "bosses": [
+   {
+    "en": "Shadow of the Vaal",
+    "tw": "瓦爾之影",
+    "v": [
+     [
+      "Artificial Appendage",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 11,
+  "en": "Pen",
+  "tw": "穢陰獄牢",
+  "bosses": [
+   {
+    "en": "Arwyn, the Houndmaster",
+    "tw": "獵捕大師阿文",
+    "v": [
+     [
+      "Overseer's Whip",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 12,
+  "en": "Arachnid Nest",
+  "tw": "異蛛巢穴",
+  "bosses": [
+   {
+    "en": "Spinner of False Hope",
+    "tw": "幽網",
+    "v": [
+     [
+      "Arachnid Leg",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 12,
+  "en": "Excavation",
+  "tw": "挖掘場",
+  "bosses": [
+   {
+    "en": "Shrieker Eihal",
+    "tw": "尖嘯艾荷",
+    "v": []
+   },
+   {
+    "en": "Breaker Toruul",
+    "tw": "毀滅者圖爾羅",
+    "v": [
+     [
+      "Pocked Arm",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 12,
+  "en": "Factory",
+  "tw": "鐵鏽工廠",
+  "bosses": [
+   {
+    "en": "Pesquin, the Mad Baron",
+    "tw": "瘋狂男爵帕根斯",
+    "v": [
+     [
+      "Voltaic Skull",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 12,
+  "en": "Sepulchre",
+  "tw": "陰暗墓塚",
+  "bosses": [
+   {
+    "en": "Doedre the Defiler",
+    "tw": "玷汙者德瑞",
+    "v": [
+     [
+      "Hag's Stomach",
+      "s"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 12,
+  "en": "Temple",
+  "tw": "奪魂之殿",
+  "bosses": [
+   {
+    "en": "Jorus, Sky's Edge",
+    "tw": "天際朱力斯",
+    "v": [
+     [
+      "Resplendent Sceptre",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 12,
+  "en": "Tropical Island",
+  "tw": "晴空幽島",
+  "bosses": [
+   {
+    "en": "Blood Progenitor",
+    "tw": "巨猿血祖",
+    "v": [
+     [
+      "Primate Foot",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 13,
+  "en": "Conservatory",
+  "tw": "寧逸溫房",
+  "bosses": [
+   {
+    "en": "The Forgotten Soldier",
+    "tw": "被遺忘的士兵",
+    "v": [
+     [
+      "Armoured Leg",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 13,
+  "en": "Moon Temple",
+  "tw": "嬋娟神殿",
+  "bosses": [
+   {
+    "en": "Sebbert, Crescent's Point",
+    "tw": "弦月之靈賽伯特",
+    "v": [
+     [
+      "Lunar Bow",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 13,
+  "en": "Necropolis",
+  "tw": "魔影墓場",
+  "bosses": [
+   {
+    "en": "Burtok, Conjurer of Bones",
+    "tw": "波塔克喚骨",
+    "v": [
+     [
+      "Bonestalker's Ribcage",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 13,
+  "en": "Park",
+  "tw": "園林苑",
+  "bosses": [
+   {
+    "en": "Suncaller Asha",
+    "tw": "喚日者艾沙",
+    "v": [
+     [
+      "Statue Leg",
+      "a"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 13,
+  "en": "Plateau",
+  "tw": "海風高原",
+  "bosses": [
+   {
+    "en": "Puruna, the Challenger",
+    "tw": "挑戰者普魯那",
+    "v": []
+   },
+   {
+    "en": "Poporo, the Highest Spire",
+    "tw": "高塔波波洛",
+    "v": [
+     [
+      "Totemic Visage",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 13,
+  "en": "Summit",
+  "tw": "寒頂之巔",
+  "bosses": [
+   {
+    "en": "Mephod, the Earth Scorcher",
+    "tw": "旱地者密法德",
+    "v": [
+     [
+      "Flaming Goat Hoof",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 14,
+  "en": "Castle Ruins",
+  "tw": "遺跡廢墟",
+  "bosses": [
+   {
+    "en": "Leif, the Swift-Handed",
+    "tw": "快手利夫",
+    "v": [
+     [
+      "Bandit Rogue's Head",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 14,
+  "en": "Cursed Crypt",
+  "tw": "惡咒陵墓",
+  "bosses": [
+   {
+    "en": "Pagan Bishop of Agony",
+    "tw": "苦痛主教",
+    "v": [
+     [
+      "Templar Skull",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 14,
+  "en": "Desert",
+  "tw": "貧瘠之地",
+  "bosses": [
+   {
+    "en": "Preethi, Eye-Pecker",
+    "tw": "啄眼者布里斯",
+    "v": [
+     [
+      "Desert Sword",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 14,
+  "en": "Museum",
+  "tw": "古博物館",
+  "bosses": [
+   {
+    "en": "He of Many Pieces",
+    "tw": "分裂者",
+    "v": [
+     [
+      "Inquisitor's Claw",
+      "s"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 14,
+  "en": "Primordial Pool",
+  "tw": "血腥沼澤",
+  "bosses": [
+   {
+    "en": "Nightmare's Omen",
+    "tw": "Nightmare's Omen",
+    "v": []
+   }
+  ]
+ },
+ {
+  "tier": 14,
+  "en": "Reef",
+  "tw": "危機海礁",
+  "bosses": [
+   {
+    "en": "Nassar, Lion of the Seas",
+    "tw": "海洋之獅納瑟爾",
+    "v": [
+     [
+      "King Crab's Claw",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 14,
+  "en": "Sulphur Vents",
+  "tw": "硫磺蝕岸",
+  "bosses": [
+   {
+    "en": "The Gorgon",
+    "tw": "戈耳戈",
+    "v": [
+     [
+      "Chimeral Eye",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 14,
+  "en": "Sunken City",
+  "tw": "亞特蘭提斯",
+  "bosses": [
+   {
+    "en": "Armala, the Widow",
+    "tw": "寡婦阿摩拉",
+    "v": [
+     [
+      "Spider Queen's Head",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 15,
+  "en": "Arid Lake",
+  "tw": "乾枯湖岸",
+  "bosses": [
+   {
+    "en": "Drought-Maddened Rhoa",
+    "tw": "旱地巨喙",
+    "v": [
+     [
+      "Severed Rhoa Head",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 15,
+  "en": "Coral Ruins",
+  "tw": "破碎堡礁",
+  "bosses": [
+   {
+    "en": "Captain Tanner Lightfoot",
+    "tw": "隊長坦納萊富特",
+    "v": [
+     [
+      "Gemling Torso",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 15,
+  "en": "Dungeon",
+  "tw": "禁魂炎獄",
+  "bosses": [
+   {
+    "en": "Penitentiary Incarcerator",
+    "tw": "監獄看守者",
+    "v": [
+     [
+      "Warden's Arm",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 15,
+  "en": "Grave Trough",
+  "tw": "墓地谷",
+  "bosses": [
+   {
+    "en": "The Restless Shade",
+    "tw": "不安陰影",
+    "v": [
+     [
+      "Spectral Hood",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 15,
+  "en": "Vaal Pyramid",
+  "tw": "瓦爾金字塔",
+  "bosses": [
+   {
+    "en": "The Broken Prince",
+    "tw": "破道王子",
+    "v": []
+   },
+   {
+    "en": "The Fallen Queen",
+    "tw": "墮影女王",
+    "v": []
+   },
+   {
+    "en": "The Hollow Lady",
+    "tw": "棄魂之女",
+    "v": []
+   }
+  ]
+ },
+ {
+  "tier": 15,
+  "en": "Wasteland",
+  "tw": "荒地",
+  "bosses": [
+   {
+    "en": "The Brittle Emperor",
+    "tw": "枯骨皇帝",
+    "v": [
+     [
+      "Templar Banner",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 16,
+  "en": "Abomination",
+  "tw": "憎惡",
+  "bosses": [
+   {
+    "en": "Nightmare of Maligaro",
+    "tw": "馬雷葛蘿之夢魘",
+    "v": [
+     [
+      "Inquisitor's Claw",
+      "s"
+     ]
+    ]
+   },
+   {
+    "en": "Nightmare of Shavronne",
+    "tw": "薛朗之夢魘",
+    "v": [
+     [
+      "Flayed Visage",
+      "s"
+     ]
+    ]
+   },
+   {
+    "en": "Nightmare of Doedre",
+    "tw": "德瑞之夢魘",
+    "v": [
+     [
+      "Hag's Stomach",
+      "s"
+     ]
+    ]
+   },
+   {
+    "en": "Nightmare of the Depraved Trinity",
+    "tw": "墮道三巨頭之夢魘",
+    "v": [
+     [
+      "Nightmarish Book of Depravity",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 16,
+  "en": "Citadel",
+  "tw": "壁壘",
+  "bosses": [
+   {
+    "en": "Nightmare of Uhtred",
+    "tw": "烏特雷之夢魘",
+    "v": [
+     [
+      "Nightmarish Head of Uhtred",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 16,
+  "en": "Forge of the Phoenix",
+  "tw": "火鳳凰熔核",
+  "bosses": [
+   {
+    "en": "Guardian of the Phoenix",
+    "tw": "鳳凰守護者",
+    "v": [
+     [
+      "Phoenix's Head",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 16,
+  "en": "Fortress",
+  "tw": "堡壘",
+  "bosses": [
+   {
+    "en": "Nightmare of the Unbreakable",
+    "tw": "不破之靈之夢魘",
+    "v": [
+     [
+      "Nightmarish Core of the Unbreakable",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 16,
+  "en": "Haunted Mansion",
+  "tw": "幽魂宅邸",
+  "bosses": [
+   {
+    "en": "Barthol, the Pure",
+    "tw": "純淨者巴佛",
+    "v": [
+     [
+      "Heretical Tome",
+      "k"
+     ]
+    ]
+   },
+   {
+    "en": "Barthol, the Corruptor",
+    "tw": "汙染者巴佛",
+    "v": [
+     [
+      "Heretical Tome",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 16,
+  "en": "Lair of the Hydra",
+  "tw": "九頭蛇冰窟",
+  "bosses": [
+   {
+    "en": "Guardian of the Hydra",
+    "tw": "九頭蛇守護者",
+    "v": [
+     [
+      "Hydra's Head",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 16,
+  "en": "Maze of the Minotaur",
+  "tw": "牛頭人謎域",
+  "bosses": [
+   {
+    "en": "Guardian of the Minotaur",
+    "tw": "牛頭人守護者",
+    "v": [
+     [
+      "Minotaur's Head",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 16,
+  "en": "Phantasmagoria",
+  "tw": "魔靈幻獄",
+  "bosses": [
+   {
+    "en": "Erythrophagia",
+    "tw": "嗜血者",
+    "v": [
+     [
+      "Hag's Stomach",
+      "s"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 16,
+  "en": "Pit of the Chimera",
+  "tw": "奇美拉魔坑",
+  "bosses": [
+   {
+    "en": "Guardian of the Chimera",
+    "tw": "奇美拉守護者",
+    "v": [
+     [
+      "Chimera's Head",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 16,
+  "en": "Port",
+  "tw": "失落城塢",
+  "bosses": [
+   {
+    "en": "Unravelling Horror",
+    "tw": "崩骨",
+    "v": [
+     [
+      "Calcified Leg",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 16,
+  "en": "Sanctuary",
+  "tw": "庇護聖所",
+  "bosses": [
+   {
+    "en": "Nightmare of Lycia",
+    "tw": "利希亞之夢魘",
+    "v": [
+     [
+      "Nightmarish Wings of Lycia",
+      "k"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 16,
+  "en": "Thicket",
+  "tw": "驚懼樹叢",
+  "bosses": [
+   {
+    "en": "The Primal One",
+    "tw": "史源者",
+    "v": [
+     [
+      "Infested Torso",
+      "a"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 16,
+  "en": "Vaal Temple",
+  "tw": "瓦爾密殿",
+  "bosses": [
+   {
+    "en": "K'aj Q'ura",
+    "tw": "K'aj Q'ura",
+    "v": [
+     [
+      "Vaal Appendage",
+      "c"
+     ]
+    ]
+   },
+   {
+    "en": "K'aj Y'ara'az",
+    "tw": "K'aj Y'ara'az",
+    "v": [
+     [
+      "Vaal Appendage",
+      "c"
+     ]
+    ]
+   },
+   {
+    "en": "K'aj A'alai",
+    "tw": "K'aj A'alai",
+    "v": [
+     [
+      "Vaal Appendage",
+      "c"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "tier": 16,
+  "en": "Ziggurat",
+  "tw": "高地神塔",
+  "bosses": [
+   {
+    "en": "Nightmare of Catarina",
+    "tw": "卡塔莉娜之夢魘",
+    "v": [
+     [
+      "Nightmarish Wings of Catarina",
+      "k"
+     ]
+    ]
+   }
+  ]
+ }
+]

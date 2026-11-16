@@ -109,6 +109,10 @@ select option{background:var(--surface);color:var(--text)}
 .item .p small,.unit{font-size:11px;font-weight:600;color:var(--text-muted);margin-left:2px}
 .item .p.none{color:var(--text-dim)}
 .item .m{grid-column:2/4;font-size:12px;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* NEW: by-map view. .map-h copies .detail-col h3; .item-none is an .item with no viscera (no hover lift, dashed icon frame). */
+.map-h{display:flex;align-items:baseline;gap:8px;margin:14px 0 8px;font-size:13px;font-weight:600;letter-spacing:.3px}
+.item.item-none{cursor:default} .item-none .icon{border-style:dashed}
+@media (hover:hover){.item.item-none:hover{transform:none;border-color:transparent;box-shadow:none}}
 .empty{padding:40px;text-align:center;color:var(--text-muted)}
 
 .detail-host{grid-column:1/-1;min-width:0}
@@ -185,6 +189,7 @@ footer a{color:var(--text-muted)}
 </header>
 
 <div class="bar">
+  <div class="chips" id="fView" role="group" aria-label="檢視"></div>
   <div class="chips" id="fType" role="group" aria-label="來源類型"></div>
   <div class="chips" id="fSlot" role="group" aria-label="部位"></div>
   <select id="fAct" aria-label="章節"></select>
@@ -235,9 +240,9 @@ const items=DATA.items.map(x=>{
 document.getElementById("snap").textContent=new Date(DATA.snap).toLocaleString("zh-TW",{timeZone:"Asia/Taipei",month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit",hour12:false});
 document.getElementById("div").textContent=DIV;
 
-const st={type:"all",slot:"all",act:"all",q:"",srv:"intl",lang:"zh"};
+const st={view:"tier",type:"all",slot:"all",act:"all",q:"",srv:"intl",lang:"zh"};
 try{Object.assign(st,JSON.parse(localStorage.getItem("vt")||"{}"),{q:""});}catch(e){}
-const save=()=>{try{localStorage.setItem("vt",JSON.stringify({type:st.type,slot:st.slot,act:st.act,srv:st.srv,lang:st.lang}))}catch(e){}};
+const save=()=>{try{localStorage.setItem("vt",JSON.stringify({view:st.view,type:st.type,slot:st.slot,act:st.act,srv:st.srv,lang:st.lang}))}catch(e){}};
 const EN=()=>st.lang==="en";
 const nm=x=>EN()?x.en:x.tw;
 const setMenu=document.getElementById("set");
@@ -247,6 +252,7 @@ document.addEventListener("click",e=>{if(setMenu.open&&!setMenu.contains(e.targe
 function chips(id,list,key){const el=document.getElementById(id);
   el.innerHTML=list.map(([v,t])=>`<button class="chip${v==="all"?" all":""}" type="button" data-v="${v}">${t}</button>`).join("");
   el.onclick=e=>{const b=e.target.closest(".chip");if(!b)return;st[key]=b.dataset.v;save();sync();render();};}
+chips("fView",[["tier","依價格"],["map","依地圖"]],"view");
 chips("fType",[["all","全部"],["boss","頭目"],["map","地圖王"],["act","章節王"]],"type");
 chips("fSlot",[["all","全部部位"],...Object.entries(SLOT)],"slot");
 const fAct=document.getElementById("fAct");
@@ -257,17 +263,38 @@ function sync(){
   document.querySelectorAll("#fType .chip").forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===st.type));
   document.querySelectorAll("#fSlot .chip").forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===st.slot));
   fAct.value=st.act;
+  document.querySelectorAll("#fView .chip").forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===st.view));
+  for(const el of [document.getElementById("fType"),document.getElementById("fSlot"),fAct])el.style.display=st.view==="map"?"none":"";
   setMenu.querySelectorAll("[data-k]").forEach(b=>{const on=st[b.dataset.k]===b.dataset.v;b.classList.toggle("is-active",on);b.setAttribute("aria-checked",on);});
   document.getElementById("set-label").textContent=`${st.srv==="tw"?"台服":"國際服"} · ${EN()?"EN":"中/EN"}`;}
 const pass=x=>(st.type==="all"||x.type===st.type)&&(st.slot==="all"||x.slot===st.slot)&&(st.act==="all"||x.act===+st.act)&&(!st.q||st.q.split(/\s+/).every(w=>x.hay.includes(w)));
 
-function tile(x){
-  return `<button class="item" type="button" data-id="${x.id}" aria-expanded="false" aria-controls="det" title="${esc(EN()?x.tw:x.en)}">
+function tile(x,meta){
+  return `<button class="item" type="button" data-id="${x.id}" aria-expanded="false" aria-controls="det" title="${esc(EN()?x.tw:x.en)}"${meta?` style="--tier-color:${COLOR[x.tier]}"`:""}>
   <span class="icon"><img src="${x.img}" alt=""></span>
   <span class="n">${esc(nm(x))}</span><span class="p${x.max?"":" none"}">${price(x.max)}</span>
-  <span class="m">${TAG[x.type]} · ${esc(EN()?x.placeEn:x.place)}</span></button>`;}
+  <span class="m">${meta??`${TAG[x.type]} · ${esc(EN()?x.placeEn:x.place)}`}</span></button>`;}
+// by-map view: every current map boss -> its viscera, with how sure we are
+const CONF={k:["確定","Confirmed"],a:["推測","Likely"],s:["可能與章節王共掉","May share act boss's"],c:["候選","Candidate"]};
+const BAND=t=>t<=5?"T5":t<=10?"T2":"T1";
+const maps=DATA.maps.map(m=>({...m,hay:[m.en,m.tw,...m.bosses.flatMap(b=>[b.en,b.tw,...b.v.map(([i])=>items[i].hay)])].join(" ").toLowerCase()}));
+function renderMaps(){
+  const en=EN(),q=st.q.split(/\s+/).filter(Boolean);
+  const list=maps.filter(m=>q.every(w=>m.hay.includes(w)));
+  const nb=list.reduce((n,m)=>n+m.bosses.length,0);
+  document.getElementById("count").textContent=en?`${list.length} maps · ${nb} bosses`:`${list.length} 張地圖 · ${nb} 王`;
+  const boss=b=>{const name=esc(en?b.en:b.tw);
+    if(!b.v.length)return `<div class="item item-none"><span class="icon"></span><span class="n">${en?"No data":"尚無資料"}</span><span class="p none">—</span><span class="m">${name}</span></div>`;
+    return b.v.map(([i,c])=>tile(items[i],`${name} · ${CONF[c][en?1:0]}`)).join("");};
+  const html=Array.from({length:16},(_,k)=>k+1).map(t=>{const ms=list.filter(m=>m.tier===t);
+    if(!ms.length)return "";
+    return `<section class="tier-block" style="--tier-color:var(--${BAND(t)})"><h2 class="tier-heading"><span class="tier-pill">T${t}</span><span class="tier-count">${ms.length} ${en?"maps":"張地圖"}</span></h2>`+
+      ms.map(m=>`<h3 class="map-h">${esc(en?m.en:m.tw)}${en?"":`<span class="section-meta">${esc(m.en)}</span>`}</h3><div class="tier-grid">${m.bosses.map(boss).join("")}</div>`).join("")+`</section>`;}).join("");
+  document.getElementById("list").innerHTML=(html?`<div class="note" style="margin:0 0 4px">${en?"Confirmed = named on poedb. Likely / Candidate = poedb lists an unnamed map boss and this boss shares the act boss's model. May share = same model as an act boss whose viscera already has a named map boss.":"確定＝poedb 有標名。推測／候選＝poedb 只寫「某地圖王」，此王與章節王同模型（候選＝有多個可能）。可能與章節王共掉＝與某章節王同模型，但那個臟器已有別的地圖王。"}</div>`+html:"")||`<div class="empty">沒有符合的地圖</div>`;
+  if(openId!=null){const t=document.querySelector(`.item[data-id="${openId}"]`);t?show(t,false):(openId=null);}}
 let openId=null;
 function render(){
+  if(st.view==="map")return renderMaps();
   const list=items.filter(pass);
   document.getElementById("count").textContent=`${list.length} / ${items.length}`;
   const html=TIERS.map(([L,,r])=>{const t=list.filter(x=>x.tier===L).sort((a,b)=>b.max-a.max);
@@ -326,7 +353,7 @@ function show(t,scroll=true){
 function hide(){const t=document.querySelector(`.item[data-id="${openId}"]`);openId=null;host.remove();if(t){t.setAttribute("aria-expanded","false");t.focus();}}
 document.getElementById("list").onclick=e=>{
   if(e.target.closest(".inline-detail-close")){hide();return;}
-  const t=e.target.closest(".item");if(!t)return;
+  const t=e.target.closest(".item");if(!t||!t.dataset.id)return;
   +t.dataset.id===openId?hide():show(t);};
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&openId!=null)hide();});
 let rz;addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(()=>{if(openId!=null){const t=document.querySelector(`.item[data-id="${openId}"]`);t&&show(t,false);}},120);});
