@@ -18,7 +18,7 @@ def vtypes(f):
     return set(x['type'] for c in r if c['id'] == 'viscera' for x in c['entries'])
 TI, TT = vtypes(base + '/dl/items.json'), vtypes(base + '/dl/twitems.json')
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import tradestats
+import tradestats, modtags
 STATS = tradestats.load_index(base + '/dl/stats.json')
 # Map-boss drops poedb lists as "?, ?" (unnamed). Every such viscera has Greater
 # listings, and Greater only drops from map bosses, so some map boss does drop it.
@@ -67,6 +67,7 @@ for i, v in enumerate(d):
         id=i, slug=v['slug'], ti=v['name'] in TI, tt=(v['name_tw'] in TT) and v['name_tw'], en=v['name'], tw=v['name_tw'] or v['name'], slot=v['slot'] or '',
         group='pin' if v['folder'] == 'PinnacleAndMapBosses' else 'act', act=act,
         drops=drops, mods=v['mods_tw'], modsEn=v['mods'], tiers=tiers,
+        tags=modtags.tags([l for m in v['mods'] for l in m[1].split(chr(10))] + [p['variant'] for p in v['prices'] if p['variant']]),
         tq=tradestats.tier_filters(STATS, v['mods'], set(tiers) | mod_tiers(v['mods'])),
         img='data:image/webp;base64,' + base64.b64encode(img).decode()))
 
@@ -90,7 +91,7 @@ for m in maps:
     for b in m['bosses']:
         b['v'] = [[ids[n], c] for n, c in b['v']]
 tpl = open(base + '/py/template.html', encoding='utf8').read()
-out = tpl.replace('/*DATA*/null', json.dumps(dict(items=items, maps=maps, div=DIV, grim=grim, snap=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')), ensure_ascii=False, separators=(',', ':')))
+out = tpl.replace('/*DATA*/null', json.dumps(dict(items=items, maps=maps, tags=[t[:4] for t in modtags.TAGS], div=DIV, grim=grim, snap=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')), ensure_ascii=False, separators=(',', ':')))
 dest = sys.argv[2] if len(sys.argv) > 2 else base + '/viscera.html'
 if len(sys.argv) > 2:  # standalone site: full document skeleton
     out = ('<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8">'

@@ -57,22 +57,28 @@ h1{margin:0;font-size:22px;font-weight:600;line-height:1.1}
 .header-actions{display:inline-flex;align-items:center;gap:8px;flex-shrink:0}
 
 /* copied: AramMeta header .icon-btn.lang-toggle + <details> .lang-menu dropdown */
-.site-header .lang-toggle{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;background:transparent;color:var(--text-muted);border:1px solid var(--border);border-radius:8px;font-size:12px;font-weight:600;white-space:nowrap;transition:color .12s,background-color .12s,border-color .12s}
-.site-header .lang-toggle:hover{color:var(--text);background:var(--surface-2);border-color:var(--border-strong)}
-.site-header .lang-toggle svg{width:16px;height:16px;flex-shrink:0}
-.site-header .lang-menu{position:relative;display:inline-flex}
-.site-header .lang-menu>summary{list-style:none;cursor:pointer;user-select:none}
-.site-header .lang-menu>summary::-webkit-details-marker{display:none}
-.site-header .lang-menu>summary::marker{content:''}
-.site-header .lang-menu[open]>summary{color:var(--text);background:var(--surface-2);border-color:var(--border-strong)}
-.site-header .lang-menu-list{position:absolute;top:calc(100% + 6px);right:0;z-index:80;min-width:160px;padding:4px;background:var(--surface-raised);border:1px solid var(--border-strong);border-radius:12px;box-shadow:0 12px 36px rgba(0,0,0,.55),0 0 0 1px rgba(0,0,0,.2);display:flex;flex-direction:column;gap:2px}
-.site-header .lang-menu-list [data-v]{appearance:none;border:0;background:transparent;color:var(--text-muted);text-align:left;font:inherit;font-size:13px;font-weight:600;padding:8px 10px;border-radius:6px;cursor:pointer;white-space:nowrap;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.site-header .lang-menu-list [data-v]:hover{color:var(--text);background:var(--surface-2)}
-.site-header .lang-menu-list [data-v].is-active{color:var(--text);background:var(--surface-2)}
-.site-header .lang-menu-list [data-v].is-active::after{content:'';width:10px;height:5px;margin-bottom:3px;border-left:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(-45deg);flex-shrink:0}
+.lang-toggle{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;background:transparent;color:var(--text-muted);border:1px solid var(--border);border-radius:8px;font-size:12px;font-weight:600;white-space:nowrap;transition:color .12s,background-color .12s,border-color .12s}
+.lang-toggle:hover{color:var(--text);background:var(--surface-2);border-color:var(--border-strong)}
+.lang-toggle svg{width:16px;height:16px;flex-shrink:0}
+.lang-menu{position:relative;display:inline-flex}
+.lang-menu>summary{list-style:none;cursor:pointer;user-select:none}
+.lang-menu>summary::-webkit-details-marker{display:none}
+.lang-menu>summary::marker{content:''}
+.lang-menu[open]>summary{color:var(--text);background:var(--surface-2);border-color:var(--border-strong)}
+.lang-menu-list{position:absolute;top:calc(100% + 6px);right:0;z-index:80;min-width:160px;padding:4px;background:var(--surface-raised);border:1px solid var(--border-strong);border-radius:12px;box-shadow:0 12px 36px rgba(0,0,0,.55),0 0 0 1px rgba(0,0,0,.2);display:flex;flex-direction:column;gap:2px}
+.lang-menu-list [data-v]{appearance:none;border:0;background:transparent;color:var(--text-muted);text-align:left;font:inherit;font-size:13px;font-weight:600;padding:8px 10px;border-radius:6px;cursor:pointer;white-space:nowrap;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.lang-menu-list [data-v]:hover{color:var(--text);background:var(--surface-2)}
+.lang-menu-list [data-v].is-active{color:var(--text);background:var(--surface-2)}
+.lang-menu-list [data-v].is-active::after{content:'';width:10px;height:5px;margin-bottom:3px;border-left:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(-45deg);flex-shrink:0}
 /* NEW: group label inside the menu (AramMeta's menu has a single group) — label type from DESIGN.md (12px/600 muted) */
-.site-header .menu-label{padding:8px 10px 2px;font-size:12px;font-weight:600;color:var(--text-dim)}
-.site-header .menu-sep{height:1px;margin:4px 6px;background:var(--border)}
+.menu-label{padding:8px 10px 2px;font-size:12px;font-weight:600;color:var(--text-dim)}
+.menu-sep{height:1px;margin:4px 6px;background:var(--border)}
+/* NEW: the mod filter reuses the dropdown above; in the bar it opens to the left edge and lays its three groups side by side. */
+.bar .lang-toggle{padding:9px 12px;font-size:13px}
+.bar .lang-menu-list{left:0;right:auto;display:grid;grid-template-columns:repeat(3,minmax(150px,auto));gap:0 8px;max-height:min(70vh,560px);overflow:auto}
+.bar .lang-menu-list .menu-col{display:flex;flex-direction:column;gap:2px}
+.bar .lang-menu-list .menu-foot{grid-column:1/-1}
+@media (max-width:600px){.bar .lang-menu-list{position:fixed;left:16px;right:16px;top:auto;grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}}
 @media (max-width:600px){#set-label{display:none}}
 .subtitle{margin-top:6px;color:var(--text-muted);font-size:13px;font-family:var(--font-caption)}
 
@@ -205,7 +211,10 @@ footer a{color:var(--text-muted)}
   <div class="chips slab" id="fView" role="group" aria-label="檢視"></div>
   <div class="chips slab" id="fType" role="group" aria-label="來源類型"></div>
   <div class="chips slab" id="fSlot" role="group" aria-label="部位"></div>
-  <select id="fAct" aria-label="章節"></select>
+  <details class="lang-menu" id="fTag">
+    <summary class="lang-toggle" aria-label="詞綴篩選"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18l-7 8v6l-4-2v-4z"/></svg><span id="tag-label"></span></summary>
+    <div class="lang-menu-list" role="menu"></div>
+  </details>
   <span class="shown-count" id="count"></span>
   <label class="search-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input class="search" type="search" id="q" placeholder="名稱、地圖、Boss、詞綴" aria-label="搜尋"></label>
 </div>
@@ -253,9 +262,9 @@ const items=DATA.items.map(x=>{
 document.getElementById("snap").textContent=new Date(DATA.snap).toLocaleString("zh-TW",{timeZone:"Asia/Taipei",month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit",hour12:false});
 document.getElementById("div").textContent=DIV;
 
-const st={view:"tier",type:"all",slot:"all",act:"all",q:"",srv:"intl",lang:"zh"};
+const st={view:"tier",type:"all",slot:"all",tags:[],q:"",srv:"intl",lang:"zh"};
 try{Object.assign(st,JSON.parse(localStorage.getItem("vt")||"{}"),{q:""});}catch(e){}
-const save=()=>{try{localStorage.setItem("vt",JSON.stringify({view:st.view,type:st.type,slot:st.slot,act:st.act,srv:st.srv,lang:st.lang}))}catch(e){}};
+const save=()=>{try{localStorage.setItem("vt",JSON.stringify({view:st.view,type:st.type,slot:st.slot,tags:st.tags,srv:st.srv,lang:st.lang}))}catch(e){}};
 const EN=()=>st.lang==="en";
 const nm=x=>EN()?x.en:x.tw;
 const setMenu=document.getElementById("set");
@@ -268,19 +277,37 @@ function chips(id,list,key){const el=document.getElementById(id);
 chips("fView",[["tier","依價格"],["map","依地圖"]],"view");
 chips("fType",[["all","全部"],["boss","頭目"],["map","地圖王"],["act","章節王"]],"type");
 chips("fSlot",[["all","全部部位"],...Object.entries(SLOT)],"slot");
-const fAct=document.getElementById("fAct");
-fAct.innerHTML=`<option value="all">全部章節</option>`+Array.from({length:10},(_,i)=>`<option value="${i+1}">Act ${i+1}</option>`).join("");
-fAct.onchange=()=>{st.act=fAct.value;save();render();};
+// mod filter: OR inside a group, AND across groups
+const TG=DATA.tags, GRP={dmg:["傷害類型","Damage type"],def:["防禦","Defence"],misc:["特殊","Special"]};
+const TGRP=Object.fromEntries(TG.map(t=>[t[1],t[0]]));
+if(!Array.isArray(st.tags))st.tags=[];
+st.tags=st.tags.filter(k=>TGRP[k]);
+const fTag=document.getElementById("fTag"), fTagList=fTag.querySelector(".lang-menu-list");
+function tagMenu(){const en=EN();
+  fTagList.innerHTML=Object.keys(GRP).map(g=>`<div class="menu-col"><div class="menu-label">${GRP[g][en?1:0]}</div>${TG.filter(t=>t[0]===g).map(t=>`<button type="button" role="menuitemcheckbox" data-v="${t[1]}">${en?t[3]:t[2]}</button>`).join("")}</div>`).join("")+
+    `<div class="menu-foot"><div class="menu-sep"></div><button type="button" data-v="" data-clear="1">${en?"Clear":"清除篩選"}</button></div>`;}
+fTagList.onclick=e=>{const b=e.target.closest("[data-v]");if(!b)return;
+  if(b.dataset.clear)st.tags=[];else{const k=b.dataset.v;st.tags=st.tags.includes(k)?st.tags.filter(x=>x!==k):[...st.tags,k];}
+  save();sync();render();};
+document.addEventListener("click",e=>{if(fTag.open&&!e.composedPath().includes(fTag))fTag.open=false;});
+// open toward whichever side has room
+fTag.addEventListener("toggle",()=>{if(!fTag.open||innerWidth<=600)return;const S=fTagList.style;S.left="0";S.right="auto";
+  if(fTagList.getBoundingClientRect().right>innerWidth-16){S.left="auto";S.right="0";}});
 document.getElementById("q").oninput=e=>{st.q=e.target.value.trim().toLowerCase();render();};
 function sync(){
   document.querySelectorAll("#fType .chip").forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===st.type));
   document.querySelectorAll("#fSlot .chip").forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===st.slot));
-  fAct.value=st.act;
+  tagMenu();
+  fTagList.querySelectorAll("[role=menuitemcheckbox]").forEach(b=>{const on=st.tags.includes(b.dataset.v);b.classList.toggle("is-active",on);b.setAttribute("aria-checked",on);});
+  const tn=Object.fromEntries(TG.map(t=>[t[1],EN()?t[3]:t[2]]));
+  document.getElementById("tag-label").textContent=!st.tags.length?(EN()?"Mods: all":"詞綴：全部"):st.tags.length<=2?st.tags.map(k=>tn[k]).join("、"):`${EN()?"Mods":"詞綴"} · ${st.tags.length}`;
   document.querySelectorAll("#fView .chip").forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===st.view));
-  for(const el of [document.getElementById("fType"),document.getElementById("fSlot"),fAct])el.style.display=st.view==="map"?"none":"";
+  for(const el of [document.getElementById("fType"),document.getElementById("fSlot"),fTag])el.style.display=st.view==="map"?"none":"";
   setMenu.querySelectorAll("[data-k]").forEach(b=>{const on=st[b.dataset.k]===b.dataset.v;b.classList.toggle("is-active",on);b.setAttribute("aria-checked",on);});
   document.getElementById("set-label").textContent=`${st.srv==="tw"?"台服":"國際服"} · ${EN()?"EN":"中/EN"}`;}
-const pass=x=>(st.type==="all"||x.type===st.type)&&(st.slot==="all"||x.slot===st.slot)&&(st.act==="all"||x.act===+st.act)&&(!st.q||st.q.split(/\s+/).every(w=>x.hay.includes(w)));
+const tagPass=x=>{const by={};for(const k of st.tags)(by[TGRP[k]]??=[]).push(k);
+  return Object.values(by).every(ks=>ks.some(k=>x.tags.includes(k)));};
+const pass=x=>(st.type==="all"||x.type===st.type)&&(st.slot==="all"||x.slot===st.slot)&&tagPass(x)&&(!st.q||st.q.split(/\s+/).every(w=>x.hay.includes(w)));
 
 function tile(x,meta){
   return `<button class="item" type="button" data-id="${x.id}" aria-expanded="false" aria-controls="det" title="${esc(EN()?x.tw:x.en)}"${meta?` style="--tier-color:${COLOR[x.tier]}"`:""}>
