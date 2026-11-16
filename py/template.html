@@ -326,10 +326,12 @@ function detail(x){
     <div class="z">${esc(z||b)}${z&&b?` <span class="detail-role-tag">· ${esc(b)}</span>`:""}</div>
     ${en?"":`<div class="en">${esc(d.zoneEn||d.bossEn)}${d.zoneEn&&d.bossEn?" — "+esc(d.bossEn):""}</div>`}</div>`;};
   const loc=[...x.map,...x.camp,...x.unv].map(where).join("")+(GRIM[x.en]?`<div><div class="k">需要 Grim Fate</div><div class="z">${esc(GRIM[x.en])}</div></div>`:"");
-  const rows=["Lesser","Normal","Greater"].filter(k=>x.tiers[k]).flatMap(k=>x.tiers[k].map(r=>[TL[k],...r]));
-  const tiers=Object.keys(x.tiers).length;
+  const TK=["Lesser","Normal","Greater"].filter(k=>x.tiers[k]||(x.tq&&x.tq[k]));
+  // a tier with no poe.ninja price still gets a row when Trade can search it
+  const rows=TK.flatMap(k=>x.tiers[k]?x.tiers[k].map(r=>[TL[k],...r]):[[TL[k],"",0,0,"",""]]);
+  const tiers=TK.length;
   const multi=rows.length>tiers;
-  const row=r=>`<tr><td class="l" title="${esc(r[1])}">${esc(multi&&r[1]?r[1]:r[0])}</td><td class="v">${price(r[2])}</td><td class="c">${r[3]} 掛</td><td class="a">${r[5]?`<a href="${NINJA}/${encodeURIComponent(r[5])}" target="_blank" rel="noopener">ninja</a>`:""}${x.tq&&x.tq[r[0]]&&tradeFor(x)?` · <a href="${tradeFor(x,x.tq[r[0]])}" target="_blank" rel="noopener">Trade</a>`:""}</td></tr>`;
+  const row=r=>`<tr><td class="l" title="${esc(r[1])}">${esc(multi&&r[1]?r[1]:r[0])}</td><td class="v">${price(r[2])}</td><td class="c">${r[2]?r[3]+" 掛":(en?"no price":"無報價")}</td><td class="a">${[r[5]?`<a href="${NINJA}/${encodeURIComponent(r[5])}" target="_blank" rel="noopener">ninja</a>`:"",x.tq&&x.tq[r[0]]&&tradeFor(x)?`<a href="${tradeFor(x,x.tq[r[0]])}" target="_blank" rel="noopener">Trade</a>`:""].filter(Boolean).join(" · ")}</td></tr>`;
   const sorted=multi?[...rows].sort((a,b)=>b[2]-a[2]):rows;
   const table=sorted.length?`<table>${sorted.slice(0,6).map(row).join("")}</table>`+(sorted.length>6?`<details><summary>其餘 ${sorted.length-6} 種</summary><table>${sorted.slice(6).map(row).join("")}</table></details>`:""):`<div class="note">poe.ninja 目前無報價</div>`;
   const rolls=!x.mods.length&&sorted.length>3;

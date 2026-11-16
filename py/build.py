@@ -39,6 +39,9 @@ UNV = {
 for _n in ("Hollowed Skull", "Vaal Appendage", "Brute's Arm", "Wraith Claws", "Champion's Banner",
            "Flayed Arm", "Bloodied Arm", "Distended Stomach"):
     UNV[_n] = [None]
+def mod_tiers(mods):
+    labels = {m[0] for m in mods}
+    return {tradestats.label_tier(m[0], labels) for m in mods} - {None}
 items = []
 for i, v in enumerate(d):
     drops = []
@@ -64,7 +67,7 @@ for i, v in enumerate(d):
         id=i, slug=v['slug'], ti=v['name'] in TI, tt=(v['name_tw'] in TT) and v['name_tw'], en=v['name'], tw=v['name_tw'] or v['name'], slot=v['slot'] or '',
         group='pin' if v['folder'] == 'PinnacleAndMapBosses' else 'act', act=act,
         drops=drops, mods=v['mods_tw'], modsEn=v['mods'], tiers=tiers,
-        tq=tradestats.tier_filters(STATS, v['mods'], set(tiers)),
+        tq=tradestats.tier_filters(STATS, v['mods'], set(tiers) | mod_tiers(v['mods'])),
         img='data:image/webp;base64,' + base64.b64encode(img).decode()))
 
 # fill slot for unpriced items from poedb? leave blank -> infer from ninja missing
@@ -100,5 +103,5 @@ missing = set(UNV) - {x['en'] for x in items}
 assert not missing, missing
 print('unverified drops:', sum(1 for x in items for e in x['drops'] if e.get('u')))
 print('no slot:', [x['en'] for x in items if not x['slot']])
-multi = [x for x in items if len(x['tiers']) > 1]
+multi = [x for x in items if len(set(x['tiers']) | mod_tiers(x['modsEn'])) > 1]
 print('per-tier trade links:', sum(1 for x in multi if x['tq']), '/', len(multi))
